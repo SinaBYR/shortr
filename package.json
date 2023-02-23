@@ -4,6 +4,7 @@
   "description": "Simple, fast and reliable URL shortener",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sina Beyraghdar",
@@ -11,7 +12,8 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "pg": "^8.9.0"
+    "pg": "^8.9.0",
+    "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
