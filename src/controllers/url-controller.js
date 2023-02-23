@@ -1,6 +1,6 @@
-const pool = require('../db/db');
+const pool = require('../../db/db');
 const uniqId = require('uniqid');
-const { validateUrl } = require('../utils/utils');
+const { validateUrl } = require('../../utils/utils');
 
 exports.createNewShortUrl = async (req, res) => {
   const originalUrl = req.body.url;
@@ -16,18 +16,41 @@ exports.createNewShortUrl = async (req, res) => {
     );
 
     if(existingUrl.rowCount) {
-      res.json(existingUrl.rows[0]);
+      return res.json(existingUrl.rows[0]);
     }
 
-    let uniqeSeg = uniqId();
-    let shortUrl = '127.0.0.1:3000/' + uniqeSeg;
+    let urlId = uniqId();
 
     let result = await pool.query(
-      'insert into url (original_url, short_url) values ($1, $2) returning *',
-      [originalUrl, shortUrl]
+      'insert into url (original_url, url_id) values ($1, $2) returning *',
+      [originalUrl, urlId]
     );
 
     res.json(result.rows[0]);
+  } catch(err) {
+    res.status(500).send('Server Error');
+  }
+}
+
+exports.redirectShortUrl = async (req, res) => {
+  const { urlId } = req.params;
+
+  try {
+    let result = await pool.query(
+      'select original_url from url where url_id = $1',
+      [urlId]
+    );
+
+    if(!result.rowCount) {
+      return res.json('Not found');
+    }
+
+    await pool.query(
+      'update url set click_count = click_count + 1 where url_id = $1',
+      [urlId]
+    );
+
+    res.redirect(result.rows[0].original_url);
   } catch(err) {
     res.status(500).send('Server Error');
   }
