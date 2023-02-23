@@ -4,7 +4,7 @@
   "description": "Simple, fast and reliable URL shortener",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server/index.js",
+    "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sina Beyraghdar",
