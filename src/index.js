@@ -7,7 +7,7 @@ const redirectRoutes = require('./routes/redirect.route');
 app.use(express.json());
 
 app.use('/api', apiRoutes);
-app.use('/:urlId', redirectRoutes);
+app.use('/', redirectRoutes);
 
 app.listen(PORT, () => {
   console.log('Server running on port ' + PORT);
