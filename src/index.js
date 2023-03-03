@@ -6,6 +6,7 @@ const apiRoutes = require('./routes/api.route');
 const redirectRoutes = require('./routes/redirect.route');
 const pageRoutes = require('./routes/pages.route');
 
+app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
