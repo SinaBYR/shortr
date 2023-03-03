@@ -4,8 +4,9 @@
   "description": "Simple, fast and reliable URL shortener",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.js & npm run sass",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch src/scss/index.scss public/css/main.css"
   },
   "author": "Sina Beyraghdar",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "ejs": "^3.1.8",
     "express": "^4.18.2",
     "pg": "^8.9.0",
+    "sass": "^1.58.3",
     "uniqid": "^5.4.0"
   },
   "devDependencies": {
