@@ -1,29 +1,53 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="UTF-8">
-<!-- <nav>
-  <ul>
-    <li>
-      <a href="/">Home</a>
-    </li>
-    <li>
-      <a href="/about">About</a>
-    </li>
-    <li>
-      <a href="/contact">Contact</a>
-    </li>
-    <li>
-      <a href="/login">Login</a>
-    </li>
-  </ul>
-</nav> -->
-
-<main>
-  <h1>کوتاه کننده لینک شورتر</h1>
-  <form action="/api/new" method="post">
-    <input type="text" name="url">
-    hi
-  </form>
-</main>
-
 <!-- xozy.ir -->
 <!-- ztty.ir -->
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/main.css" type="text/css">
+  <title>Shortr | Link Shortening Tool</title>
+</head>
+<body>
+  <nav class="main-navigation">
+    <ul>
+      <li>
+        <a href="/">صفحه اصلی</a>
+      </li>
+      <li>
+        <a href="/about">درباره ما</a>
+      </li>
+      <li>
+        <a href="/contact">تماس با ما</a>
+      </li>
+      <li>
+        <a href="/termsofservice">قوانین و مقررات</a>
+      </li>
+      <li>
+        <a href="/login">ورود/ثبت نام</a>
+      </li>
+    </ul>
+  </nav>
+  
+  <main class="main-container">
+    <h1>کوتاه کننده لینک شورتر</h1>
+    <form action="/api/new" method="post">
+      <button type="submit">کوتاه کن</button>
+      <input type="text" name="url">
+    </form>
+    <aside class="benefits-details">
+      <p>با خیالی راحت لینک موردنظرتان را کوتاه کنید و از امکانات فوق العاده سرویس شورتر بهره مند شوید:</p>
+      <ul>
+        <li>مشاهده تعداد بازدیدهای لینک</li>
+        <li>مشاهده اطلاعات کاربردی بازدیدکنندگان</li>
+        <li>بهره مندی از دامنه دلخواه شما</li>
+        <li>شناسایی لینک های اسپم</li>
+        <li>داشبورد اختصاصی جهت بررسی عملکرد لینک</li>
+        <li>ارائه پشتیبانی تمام وقت</li>
+        <li>و ...</li>
+      </ul>
+    </aside>
+  </main>
+</body>
+</html>

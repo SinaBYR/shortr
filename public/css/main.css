@@ -1,0 +1,76 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: #EB6440;
+  background-color: #EFF5F5;
+  direction: rtl;
+}
+
+.main-navigation {
+  height: 100px;
+  background-color: #2C3639;
+}
+.main-navigation ul {
+  display: flex;
+  max-width: 980px;
+  height: 100%;
+  margin: 0 auto;
+}
+.main-navigation ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-left: 1rem;
+}
+.main-navigation ul li a {
+  color: #e97758;
+}
+.main-navigation ul li:last-child {
+  margin-right: auto;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 980px;
+  height: 500px;
+  margin: 0 auto;
+}
+.main-container h1 {
+  font-size: 1.8rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.main-container form {
+  margin-bottom: 3rem;
+}
+.main-container form input {
+  display: inline-block;
+  width: 500px;
+  font-size: 1rem;
+  padding: 0.25rem;
+  margin-bottom: 1rem;
+  direction: ltr;
+}
+
+.benefits-details {
+  height: 100%;
+}
+.benefits-details p {
+  line-height: 1.4;
+}
+.benefits-details ul {
+  margin-right: 5rem;
+}
+.benefits-details ul li {
+  margin: 1rem 0;
+}
+
+/*# sourceMappingURL=main.css.map */
