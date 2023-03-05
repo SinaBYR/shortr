@@ -12,6 +12,7 @@ body {
 .main-navigation {
   height: 100px;
   background-color: #2C3639;
+  background-color: #2a3336;
 
   ul {
     display: flex;
@@ -27,7 +28,7 @@ body {
       margin-left: 1rem;
 
       a {
-        color: #e97758;
+        color: #EB6440;
       }
 
       &:last-child {
@@ -81,4 +82,15 @@ body {
       margin: 1rem 0;
     }
   }
+}
+
+.button {
+  display: inline-block;
+  color: #14181a;
+  color: #EB6440;
+  background-color: #EB6440;
+  background-color: #2a3336;
+  font-size: 1rem;
+  padding: 0.3rem 1rem;
+  cursor: pointer;
 }
