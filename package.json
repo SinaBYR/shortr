@@ -4,8 +4,10 @@
   "description": "Simple, fast and reliable URL shortener",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js & npm run sass",
+    "dev": "npm run nodemon & npm run sass",
+    "serve": "npm run nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon src/index.js",
     "sass": "sass --watch src/scss/index.scss public/css/main.css"
   },
   "author": "Sina Beyraghdar",
