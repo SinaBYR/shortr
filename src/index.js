@@ -14,8 +14,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
-app.use('/', redirectRoutes);
 app.use('/', pageRoutes);
+app.use('/', redirectRoutes);
 
 app.listen(PORT, () => {
   console.log('Server running on port ' + PORT);
