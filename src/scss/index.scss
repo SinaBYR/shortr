@@ -1,6 +1,8 @@
 @import './colors';
 @import './layout';
 @import './forms';
+@import './login.scss';
+@import './utility.scss';
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 
 body {
@@ -55,11 +57,12 @@ body {
   }
 
   form {
+    width: 500px;
     margin-bottom: 3rem;
-
+  
     input {
       display: inline-block;
-      width: 500px;
+      width: 100%;
       font-size: 1rem;
       padding: 0.25rem;
       margin-bottom: 1rem;
@@ -82,15 +85,4 @@ body {
       margin: 1rem 0;
     }
   }
-}
-
-.button {
-  display: inline-block;
-  color: #14181a;
-  color: #EB6440;
-  background-color: #EB6440;
-  background-color: #2a3336;
-  font-size: 1rem;
-  padding: 0.3rem 1rem;
-  cursor: pointer;
 }

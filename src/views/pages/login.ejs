@@ -1,5 +1,3 @@
-<!-- xozy.ir -->
-<!-- ztty.ir -->
 <!DOCTYPE html>
 <html lang="fa-IR" dir="rtl">
 <head>
@@ -30,13 +28,21 @@
     </ul>
   </nav>
   
-  <main class="main-container">
-    <h1>ورود</h1>
-    <form action="/auth/login" method="post">
-      <input type="text" name="username">
-      <input type="text" name="password">
-      <button>وارد شوید</button>
+  <main class="login-container">
+    <h2>ورود</h2>
+    <form action="/auth/login" method="post" class="login-form">
+      <label for="username">نام کاربری</label>
+      <input type="text" name="username" id="username">
+      <label for="password">رمزعبور</label>
+      <input type="password" name="password" id="password">
+      <button class="btn primary">وارد شوید</button>
     </form>
+    <div>
+      <span>حساب کاربری ندارید؟</span>
+      <button class="btn classic">ثبت نام کنید</button>
+    </div>
   </main>
+
+  <script src="js/login.js"></script>
 </body>
 </html>

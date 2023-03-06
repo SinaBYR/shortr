@@ -1,0 +1,29 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+
+  input {
+    display: inline-block;
+    font-size: 1rem;
+    padding: 0.25rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    direction: ltr;
+  }
+
+  button {
+    margin-bottom: 1rem;
+  }
+}
