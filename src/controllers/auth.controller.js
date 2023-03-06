@@ -1,5 +1,15 @@
 const pool = require('../../db/db');
 
+exports.logoutUser = function(req, res) {
+  if(!req.session.user) {
+    return res.status(400).render('pages/login.ejs');
+  }
+
+  req.session.destroy();
+  // 1. send logout was successful.
+  res.render('pages/login.ejs');
+}
+
 exports.createNewUser = async function(req, res) {
   let { username, password } = req.body;
 
