@@ -30,14 +30,23 @@
   
   <main class="login-container">
     <h2>ورود</h2>
-    <form action="/auth/login" method="post" class="login-form">
+    <form action="/auth/login" method="post" class="form" id="login-form">
       <label for="username">نام کاربری</label>
       <input type="text" name="username" id="username">
       <label for="password">رمزعبور</label>
       <input type="password" name="password" id="password">
       <button class="btn primary">وارد شوید</button>
     </form>
-    <div>
+    <form action="/auth/new" method="post" class="form hidden" id="register-form">
+      <label for="username">نام کاربری</label>
+      <input type="text" name="username" id="username">
+      <label for="password">رمزعبور</label>
+      <input type="password" name="password" id="password">
+      <label for="repeat-password">تکرار رمزعبور</label>
+      <input type="password" name="repeat-password" id="repeat-password">
+      <button class="btn primary">ثبت نام</button>
+    </form>
+    <div class="switch-form">
       <span>حساب کاربری ندارید؟</span>
       <button class="btn classic">ثبت نام کنید</button>
     </div>

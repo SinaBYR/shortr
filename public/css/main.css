@@ -1,3 +1,65 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+.login-container h2 {
+  margin-bottom: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+.form input {
+  display: inline-block;
+  font-size: 1rem;
+  padding: 0.25rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  direction: ltr;
+}
+.form button {
+  margin-bottom: 1rem;
+}
+
+.switch-form {
+  text-align: center;
+}
+
+:is(#login-form, #register-form).hidden {
+  display: none;
+}
+
+.btn {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.primary {
+  color: #EB6440;
+  background-color: #2a3336;
+  padding: 0.3rem 0;
+}
+
+.classic {
+  color: #2a3336;
+  background-color: transparent;
+  text-decoration: underline;
+}
+.classic:hover {
+  color: #060707;
+}
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -51,11 +113,12 @@ body {
   text-align: center;
 }
 .main-container form {
+  width: 500px;
   margin-bottom: 3rem;
 }
 .main-container form input {
   display: inline-block;
-  width: 500px;
+  width: 100%;
   font-size: 1rem;
   padding: 0.25rem;
   margin-bottom: 1rem;
@@ -73,17 +136,6 @@ body {
 }
 .benefits-details ul li {
   margin: 1rem 0;
-}
-
-.button {
-  display: inline-block;
-  color: #14181a;
-  color: #EB6440;
-  background-color: #EB6440;
-  background-color: #2a3336;
-  font-size: 1rem;
-  padding: 0.3rem 1rem;
-  cursor: pointer;
 }
 
 /*# sourceMappingURL=main.css.map */

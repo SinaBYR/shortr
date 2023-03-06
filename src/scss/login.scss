@@ -9,7 +9,7 @@
   }
 }
 
-.login-form {
+.form {
   display: flex;
   flex-direction: column;
   width: 300px;
@@ -26,4 +26,12 @@
   button {
     margin-bottom: 1rem;
   }
+}
+
+.switch-form {
+  text-align: center;
+}
+
+:is(#login-form, #register-form).hidden {
+  display: none;
 }
