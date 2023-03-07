@@ -1,3 +1,4 @@
+const headingTag = document.querySelector('.login-container h2');
 const switchFormContainer = document.getElementsByClassName('switch-form')[0];
 const switchFormButton = switchFormContainer.getElementsByTagName('button')[0];
 const switchFormSpan = switchFormContainer.getElementsByTagName('span')[0];
@@ -15,6 +16,7 @@ switchFormContainer.addEventListener('click', () => {
     registerForm.classList.remove('hidden');
     switchFormSpan.innerHTML = 'حساب کاربری دارید؟';
     switchFormButton.innerHTML = 'وارد شوید';
+    headingTag.innerHTML = 'ثبت نام';
     isLoggingIn = false;
     return;
   }
@@ -23,5 +25,6 @@ switchFormContainer.addEventListener('click', () => {
   loginForm.classList.remove('hidden');
   switchFormSpan.innerHTML = 'حساب کاربری ندارید؟';
   switchFormButton.innerHTML = 'ثبت نام کتید';
+  headingTag.innerHTML = 'ورود';
   isLoggingIn = true;
 })
