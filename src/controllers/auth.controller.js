@@ -1,4 +1,5 @@
 const pool = require('../../db/db');
+const { validationResult } = require('express-validator');
 
 exports.logoutUser = function(req, res) {
   if(!req.session.user) {
@@ -12,25 +13,11 @@ exports.logoutUser = function(req, res) {
 
 exports.createNewUser = async function(req, res) {
   let { body } = req;
-
-  if(!body.username || !body.password || !body.repeatPassword) {
-    // 1. render a view
-    // return res.status(401).json('Authentication failed');
-    const fields = {
-      username: 'نام کاربری',
-      password: 'رمز عبور',
-      repeatPassword: 'تکرار رمز عبور'
-    };
-    let errorObject = {};
-    Object.entries(fields).forEach(([ key, value ]) => {
-      if(!body[key]) {
-        errorObject[key] = {
-          message: `${value} یک فیلد اجباری است`
-        }
-      }
-    })
+  const errors = validationResult(req).array().map(err => err.msg);
+  
+  if(errors.length) {
     return res.status(400).render('pages/register', {
-      errors: errorObject,
+      errors,
       formData: {
         username: body.username,
         password: body.password,
@@ -40,6 +27,7 @@ exports.createNewUser = async function(req, res) {
   }
 
   try {
+
     // 1. hash password
     // 2. retrieve id column
     let registerUserRes = await pool.query(`
