@@ -13,7 +13,7 @@ exports.logoutUser = function(req, res) {
 
 exports.createNewUser = async function(req, res) {
   let { body } = req;
-  const errors = validationResult(req).array().map(err => err.msg);
+  let errors = validationResult(req).array().map(err => err.msg);
   
   if(errors.length) {
     return res.status(400).render('pages/register', {
@@ -23,7 +23,7 @@ exports.createNewUser = async function(req, res) {
         password: body.password,
         repeatPassword: body.repeatPassword
       }
-    });
+    })
   }
 
   try {
@@ -51,11 +51,17 @@ exports.createNewUser = async function(req, res) {
 }
 
 exports.loginUser = async function (req, res) {
-  let { username, password } = req.body;
+  let { body } = req;
+  let errors = validationResult(req).array().map(err => err.msg);
 
-  if(!username || !password) {
-    // 1. send some errors and warnings about user inputs.
-    return res.status(400).render('pages/login');
+  if(errors.length) {
+    return res.status(400).render('pages/login', {
+      errors,
+      formData: {
+        username: body.username,
+        password: body.password,
+      }
+    })
   }
 
   try {
@@ -63,7 +69,7 @@ exports.loginUser = async function (req, res) {
       select username, password
       from user_account
       where username = $1;
-    `, [username]);
+    `, [body.username]);
 
     if(!loginUserResponse.rowCount) {
       // 1. username not found. want to register?
@@ -71,14 +77,14 @@ exports.loginUser = async function (req, res) {
       return res.json('username not found.');
     }
 
-    if(loginUserResponse.rows[0].password !== password) {
+    if(loginUserResponse.rows[0].password !== body.password) {
       // 1. send username/password incorrectness error.
       // return res.status(400).render('pages/login');
       return res.json('username/password incorrect')
     }
 
     req.session.user = {
-      username
+      username: body.username
     };
     // 1. send user info alongside other resources.
     // res.render('pages/login');
