@@ -1,0 +1,21 @@
+.login-form, .register-form {
+  width: 300px;
+
+  label {
+    display: inline-block;
+  }
+
+  input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.25rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    direction: ltr;
+  }
+
+  button {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}

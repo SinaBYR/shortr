@@ -9,3 +9,11 @@ exports.renderLoginPage = function(req, res) {
 
   res.render('pages/login');
 }
+
+exports.renderRegisterPage = function(req, res) {
+  if(req.session.user) {
+    return res.render('pages/admin');
+  }
+
+  res.render('pages/register');
+}

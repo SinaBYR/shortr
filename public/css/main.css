@@ -1,3 +1,22 @@
+.login-form, .register-form {
+  width: 300px;
+}
+.login-form label, .register-form label {
+  display: inline-block;
+}
+.login-form input, .register-form input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.25rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  direction: ltr;
+}
+.login-form button, .register-form button {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -8,31 +27,14 @@
   margin-bottom: 1rem;
 }
 
-.form {
-  width: 300px;
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
 }
-.form label {
-  display: inline-block;
-}
-.form input {
-  width: 100%;
-  font-size: 1rem;
-  padding: 0.25rem;
-  margin-top: 0.25rem;
+.register-container h2 {
   margin-bottom: 1rem;
-  direction: ltr;
-}
-.form button {
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.switch-form {
-  text-align: center;
-}
-
-:is(#login-form, #register-form).hidden {
-  display: none;
 }
 
 .btn {

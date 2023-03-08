@@ -28,19 +28,31 @@
     </ul>
   </nav>
   
-  <main class="login-container">
-    <h2>ورود</h2>
-    <form action="/auth/login" method="post" class="login-form">
+  <main class="register-container">
+    <% if (typeof errors != 'undefined' && Object.keys(errors).length != 0) { %>
+      <ul>
+        <% Object.values(errors).forEach(err => {%>
+          <li>
+            <strong><%= err.message %></strong>
+          </li>
+        <% });%>
+      </ul>
+    <%} %>
+    <h2>ثبت نام</h2>
+    <form action="/auth/new" method="post" class="register-form">
       <label for="username">نام کاربری</label>
       <input type="text" name="username" id="username">
       <label for="password">رمزعبور</label>
       <input type="password" name="password" id="password">
-      <button class="btn primary">وارد شوید</button>
+      <label for="repeat-password">تکرار رمزعبور</label>
+      <input type="password" name="repeat-password" id="repeat-password">
+      <label style="display: inline;" for="agreed-on-terms">قوانین و مقررات را خوانده و می پذیرم</label>
+      <input type="checkbox" name="agreed-on-terms" id="agreed-on-terms" style="width: unset;">
+      <button class="btn primary">ثبت نام</button>
     </form>
-    
     <div>
-      <span>حساب کاربری ندارید؟</span>
-      <a href="/register">ثبت نام کنید<a>
+      <span>حساب کاربری دارید؟</span>
+      <a href="/login">وارد شوید</a>
     </div>
   </main>
 
