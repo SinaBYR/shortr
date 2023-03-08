@@ -25,11 +25,10 @@ exports.createNewUser = async function(req, res) {
     Object.entries(fields).forEach(([ key, value ]) => {
       if(!body[key]) {
         errorObject[key] = {
-          message: `یک فیلد اجباری است ${value}`
+          message: `${value} یک فیلد اجباری است`
         }
       }
     })
-    
     return res.status(400).render('pages/register', {
       errors: errorObject,
       formData: {
