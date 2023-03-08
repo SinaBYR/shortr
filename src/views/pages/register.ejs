@@ -31,7 +31,7 @@
   <main class="register-container">
     <h2>ثبت نام</h2>
     <% if (typeof errors != 'undefined' && Object.keys(errors).length != 0) { %>
-      <ul>
+      <ul class="form-errors">
         <% Object.values(errors).forEach(err => {%>
           <li>
             <strong><%= err.message %></strong>
