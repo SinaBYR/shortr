@@ -29,6 +29,7 @@
   </nav>
   
   <main class="register-container">
+    <h2>ثبت نام</h2>
     <% if (typeof errors != 'undefined' && Object.keys(errors).length != 0) { %>
       <ul>
         <% Object.values(errors).forEach(err => {%>
@@ -38,14 +39,13 @@
         <% });%>
       </ul>
     <%} %>
-    <h2>ثبت نام</h2>
     <form action="/auth/new" method="post" class="register-form">
       <label for="username">نام کاربری</label>
-      <input type="text" name="username" id="username">
+      <input type="text" name="username" id="username" value="<%= locals.formData && locals.formData.username ? locals.formData.username : '' %>">
       <label for="password">رمزعبور</label>
-      <input type="password" name="password" id="password">
+      <input type="password" name="password" id="password" value="<%= locals.formData && locals.formData.password ? locals.formData.password : '' %>">
       <label for="repeat-password">تکرار رمزعبور</label>
-      <input type="password" name="repeat-password" id="repeat-password">
+      <input type="password" name="repeat-password" id="repeat-password" value="<%= locals.formData && locals.formData.repeatPassword ? locals.formData.repeatPassword : '' %>">
       <label style="display: inline;" for="agreed-on-terms">قوانین و مقررات را خوانده و می پذیرم</label>
       <input type="checkbox" name="agreed-on-terms" id="agreed-on-terms" style="width: unset;">
       <button class="btn primary">ثبت نام</button>

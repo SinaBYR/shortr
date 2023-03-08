@@ -11,11 +11,33 @@ exports.logoutUser = function(req, res) {
 }
 
 exports.createNewUser = async function(req, res) {
-  let { username, password } = req.body;
+  let { body } = req;
 
-  if(!username || !password) {
+  if(!body.username || !body.password || !body.repeatPassword) {
     // 1. render a view
-    return res.status(401).json('Authentication failed');
+    // return res.status(401).json('Authentication failed');
+    const fields = {
+      username: 'نام کاربری',
+      password: 'رمز عبور',
+      repeatPassword: 'تکرار رمز عبور'
+    };
+    let errorObject = {};
+    Object.entries(fields).forEach(([ key, value ]) => {
+      if(!body[key]) {
+        errorObject[key] = {
+          message: `یک فیلد اجباری است ${value}`
+        }
+      }
+    })
+    
+    return res.status(400).render('pages/register', {
+      errors: errorObject,
+      formData: {
+        username: body.username,
+        password: body.password,
+        repeatPassword: body.repeatPassword
+      }
+    });
   }
 
   try {
@@ -24,14 +46,14 @@ exports.createNewUser = async function(req, res) {
     let registerUserRes = await pool.query(`
       insert into user_account (username, password)
       values ($1, $2) returning username;
-    `,[username, password]);
+    `,[body.username, body.password]);
 
     if(!registerUserRes.rowCount) {
       throw new Error('An unexpected error occured.');
     }
 
     req.session.user = {
-      username
+      username: body.username
     };
 
     // 1. render a view
