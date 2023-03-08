@@ -5,6 +5,7 @@ const { createNewUser, loginUser, getCurrentUser, logoutUser } = require('../con
 
 router.use(session());
 router.use('/login', express.urlencoded({ extended: false }))
+router.use('/new', express.urlencoded({ extended: false }))
 
 router.post('/new', createNewUser);
 router.post('/login', loginUser);
