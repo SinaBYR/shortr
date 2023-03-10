@@ -38,14 +38,20 @@ exports.createNewUser = async function(req, res) {
       throw new Error('An unexpected error occured.');
     }
 
-    req.session.user = {
-      username: body.username
-    };
+    req.session.regenerate(function(err) {
+      if(err) return res.status(500).json(err.message);
 
-    req.session.save();
+      req.session.user = {
+        username: body.username
+      };
 
-    // 1. render a view
-    res.status(201).json('User account created successfully.');
+      req.session.save(function(err) {
+        if(err) return res.status(500).json(err.message);
+
+        // 1. render a view
+        res.status(201).json('User account created successfully.');
+      })
+    })
   } catch(err) {
     res.status(500).json(err.message);
   }
@@ -84,15 +90,21 @@ exports.loginUser = async function (req, res) {
       return res.json('username/password incorrect')
     }
 
-    req.session.user = {
-      username: body.username
-    };
+    req.session.regenerate(function(err) {
+      if(err) return res.status(500).json(err.message);
 
-    req.session.save();
-    
-    // 1. send user info alongside other resources.
-    // res.render('pages/login');
-    res.json('cool')
+      req.session.user = {
+        username: body.username
+      };
+
+      req.session.save(function(err) {
+        if(err) return res.status(500).json(err.message);
+
+        // 1. send user info alongside other resources.
+        // res.render('pages/login');
+        res.json('cool');
+      })
+    })
   } catch(err) {
     // 1. render a 500 error page.
     res.status(500).send('Server Error');
