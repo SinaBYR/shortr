@@ -20,8 +20,7 @@ exports.createNewUser = async function(req, res) {
       errors,
       formData: {
         username: body.username,
-        password: body.password,
-        repeatPassword: body.repeatPassword
+        password: body.password
       }
     })
   }
