@@ -42,6 +42,8 @@ exports.createNewUser = async function(req, res) {
       username: body.username
     };
 
+    req.session.save();
+
     // 1. render a view
     res.status(201).json('User account created successfully.');
   } catch(err) {
@@ -85,6 +87,9 @@ exports.loginUser = async function (req, res) {
     req.session.user = {
       username: body.username
     };
+
+    req.session.save();
+    
     // 1. send user info alongside other resources.
     // res.render('pages/login');
     res.json('cool')
