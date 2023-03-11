@@ -3,12 +3,23 @@ const { validationResult } = require('express-validator');
 
 exports.logoutUser = function(req, res) {
   if(!req.session.user) {
-    return res.status(400).render('pages/login.ejs');
+    return res.redirect('/login');
   }
 
-  req.session.destroy();
-  // 1. send logout was successful.
-  res.render('pages/login.ejs');
+  req.session.user = null;
+  req.session.save(function(err) {
+    if(err) return res.status(500).json(err.message);
+
+    req.session.regenerate(function(err) {
+      if(err) return res.status(500).json(err.message);
+
+      res.render('pages/login', {
+        logoutFeedback: {
+          message: 'شما با موفقیت از حساب کاربری خود خارج شدید'
+        }
+      });
+    })
+  })
 }
 
 exports.createNewUser = async function(req, res) {
