@@ -7,6 +7,7 @@ const sessionStore = new PostgreSqlStore({
 
 function session() {
   return expressSession({
+    name: 'shortr',
     secret: 'my cute kitten',
     cookie: {
       maxAge: 2*60000
