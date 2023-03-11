@@ -3,9 +3,10 @@ const router = express.Router();
 const { renderIndexPage, renderLoginPage, renderRegisterPage } = require('../controllers/pages-controller');
 const session = require('../middleware/session');
 
-router.get('/', renderIndexPage);
+router.use(session());
 
-router.get('/login', session(), renderLoginPage);
-router.get('/register', session(), renderRegisterPage);
+router.get('/', renderIndexPage);
+router.get('/login', renderLoginPage);
+router.get('/register', renderRegisterPage);
 
 module.exports = router;
