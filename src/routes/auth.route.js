@@ -10,7 +10,7 @@ router.use('/new', express.urlencoded({ extended: false }))
 
 router.post('/new', validateNewUser, createNewUser);
 router.post('/login', validateLogin, loginUser);
-router.post('/logout', logoutUser);
+router.get('/logout', logoutUser);
 router.get('/me', getCurrentUser);
 
 module.exports = router;
