@@ -8,25 +8,8 @@
   <title>Shortr | Link Shortening Tool</title>
 </head>
 <body>
-  <nav class="main-navigation">
-    <ul>
-      <li>
-        <a href="/">صفحه اصلی</a>
-      </li>
-      <li>
-        <a href="/#pricing">قیمت گذاری</a>
-      </li>
-      <li>
-        <a href="/termsofservice">قوانین و مقررات</a>
-      </li>
-      <li>
-        <a href="/about">درباره ما</a>
-      </li>
-      <li>
-        <a href="/login">ورود/ثبت نام</a>
-      </li>
-    </ul>
-  </nav>
+
+  <%- include('../partials/navigation') %>
   
   <main class="login-container">
     <% if(locals.logoutFeedback && locals.logoutFeedback.message) { %>

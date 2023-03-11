@@ -1,0 +1,28 @@
+<nav class="main-navigation">
+  <ul>
+    <li>
+      <a href="/">صفحه اصلی</a>
+    </li>
+    <li>
+      <a href="/#pricing">قیمت گذاری</a>
+    </li>
+    <li>
+      <a href="/termsofservice">قوانین و مقررات</a>
+    </li>
+    <li>
+      <a href="/about">درباره ما</a>
+    </li>
+    <% if(locals.user) { %>
+    <li>
+      <div>
+        <%= locals.user.username %>
+      </div>
+      <a href="/auth/logout" id="btn-logout">خروج</a>
+    </li>
+    <% } else { %>
+      <li>
+        <a href="/login">ورود/ثبت نام</a>
+      </li>
+    <% } %>
+  </ul>
+</nav>

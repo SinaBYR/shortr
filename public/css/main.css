@@ -1,3 +1,27 @@
+.main-navigation {
+  height: 100px;
+  background-color: #2a3336;
+}
+.main-navigation ul {
+  display: flex;
+  max-width: 980px;
+  height: 100%;
+  margin: 0 auto;
+}
+.main-navigation ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-left: 1rem;
+}
+.main-navigation ul li a {
+  color: #EB6440;
+}
+.main-navigation ul li:last-child {
+  margin-right: auto;
+}
+
 .login-form, .register-form {
   width: 300px;
 }
@@ -25,6 +49,12 @@
 }
 .login-container h2 {
   margin-bottom: 1rem;
+}
+
+.logout-feedback {
+  padding: 1rem;
+  margin-bottom: 3rem;
+  border: 1px solid green;
 }
 
 .register-container {
@@ -86,31 +116,6 @@ body {
   color: #EB6440;
   background-color: #EFF5F5;
   direction: rtl;
-}
-
-.main-navigation {
-  height: 100px;
-  background-color: #2C3639;
-  background-color: #2a3336;
-}
-.main-navigation ul {
-  display: flex;
-  max-width: 980px;
-  height: 100%;
-  margin: 0 auto;
-}
-.main-navigation ul li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  margin-left: 1rem;
-}
-.main-navigation ul li a {
-  color: #EB6440;
-}
-.main-navigation ul li:last-child {
-  margin-right: auto;
 }
 
 .main-container {
