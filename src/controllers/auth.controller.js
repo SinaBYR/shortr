@@ -30,7 +30,7 @@ exports.createNewUser = async function(req, res) {
     return res.status(400).render('pages/register', {
       errors,
       formData: {
-        username: body.username,
+        email: body.email,
         password: body.password
       }
     })
@@ -41,9 +41,9 @@ exports.createNewUser = async function(req, res) {
     // 1. hash password
     // 2. retrieve id column
     let registerUserRes = await pool.query(`
-      insert into user_account (username, password)
-      values ($1, $2) returning username;
-    `,[body.username, body.password]);
+      insert into user_account (email, password)
+      values ($1, $2) returning email;
+    `,[body.email, body.password]);
 
     if(!registerUserRes.rowCount) {
       throw new Error('An unexpected error occured.');
@@ -53,7 +53,7 @@ exports.createNewUser = async function(req, res) {
       if(err) return res.status(500).json(err.message);
 
       req.session.user = {
-        username: body.username
+        email: body.email
       };
 
       req.session.save(function(err) {
@@ -76,7 +76,7 @@ exports.loginUser = async function (req, res) {
     return res.status(400).render('pages/login', {
       errors,
       formData: {
-        username: body.username,
+        email: body.email,
         password: body.password,
       }
     })
@@ -84,28 +84,28 @@ exports.loginUser = async function (req, res) {
 
   try {
     let loginUserResponse = await pool.query(`
-      select username, password
+      select email, password
       from user_account
-      where username = $1;
-    `, [body.username]);
+      where email = $1;
+    `, [body.email]);
 
     if(!loginUserResponse.rowCount) {
-      // 1. username not found. want to register?
+      // 1. email not found. want to register?
       // return res.status(400).render('pages/login');
-      return res.json('username not found.');
+      return res.json('email not found.');
     }
 
     if(loginUserResponse.rows[0].password !== body.password) {
-      // 1. send username/password incorrectness error.
+      // 1. send email/password incorrectness error.
       // return res.status(400).render('pages/login');
-      return res.json('username/password incorrect')
+      return res.json('email/password incorrect')
     }
 
     req.session.regenerate(function(err) {
       if(err) return res.status(500).json(err.message);
 
       req.session.user = {
-        username: body.username
+        email: body.email
       };
 
       req.session.save(function(err) {
@@ -131,10 +131,10 @@ exports.getCurrentUser = async function(req, res) {
   try {
     // 1. add other info to the table
     const fetchUserRes = await pool.query(`
-      select username
+      select email
       from user_account
-      where username = $1;
-    `, [user.username]);
+      where email = $1;
+    `, [user.email]);
 
     if(!fetchUserRes.rowCount) {
       return res.status(404).send('User not found.');

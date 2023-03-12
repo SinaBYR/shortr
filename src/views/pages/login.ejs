@@ -28,8 +28,8 @@
       </ul>
     <%} %>
     <form action="/auth/login" method="post" class="login-form">
-      <label for="username">نام کاربری</label>
-      <input type="text" name="username" id="username" value="<%= locals.formData && locals.formData.username ? locals.formData.username : '' %>">
+      <label for="email">نام کاربری</label>
+      <input type="text" name="email" id="email" value="<%= locals.formData && locals.formData.email ? locals.formData.email : '' %>">
       <label for="password">رمزعبور</label>
       <input type="password" name="password" id="password" value="<%= locals.formData && locals.formData.password ? locals.formData.password : '' %>">
       <button class="btn primary">وارد شوید</button>

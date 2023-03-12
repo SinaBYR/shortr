@@ -2,7 +2,7 @@ const { body } = require('express-validator');
 
 exports.validateNewUser = async function(req, _, next) {
   let validations = [
-    body('username')
+    body('email')
       .exists({ checkFalsy: true })
       .withMessage('آدرس ایمیل یک فیلد اجباری است')
       .isEmail()
@@ -24,7 +24,7 @@ exports.validateNewUser = async function(req, _, next) {
 
 exports.validateLogin = async function(req, _, next) {
   let validations = [
-    body('username')
+    body('email')
       .exists({ checkFalsy: true })
       .withMessage('آدرس ایمیل یک فیلد اجباری است')
       .isEmail()
