@@ -31,6 +31,7 @@ exports.createNewUser = async function(req, res) {
       errors,
       formData: {
         email: body.email,
+        fullName: body.fullName,
         password: body.password
       }
     })
@@ -39,11 +40,11 @@ exports.createNewUser = async function(req, res) {
   try {
 
     // 1. hash password
-    // 2. retrieve id column
+    // 2. retrieve id, fullName columns
     let registerUserRes = await pool.query(`
-      insert into user_account (email, password)
-      values ($1, $2) returning email;
-    `,[body.email, body.password]);
+      insert into user_account (email, fullName, password)
+      values ($1, $2, $3) returning email;
+    `,[body.email, body.fullName, body.password]);
 
     if(!registerUserRes.rowCount) {
       throw new Error('An unexpected error occured.');

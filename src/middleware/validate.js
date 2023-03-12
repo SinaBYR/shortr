@@ -7,6 +7,9 @@ exports.validateNewUser = async function(req, _, next) {
       .withMessage('آدرس ایمیل یک فیلد اجباری است')
       .isEmail()
       .withMessage('آدرس ایمیل نامعتبر است'),
+    body('fullName')
+      .exists({ checkFalsy: true })
+      .withMessage('نام و نام خانوادگی یک فیلد اجباری است'),
     body('password')
       .exists({ checkFalsy: true })
       .withMessage('رمز عبور یک فیلد اجباری است')
