@@ -1,0 +1,43 @@
+.dashboard-container {
+  position: relative;
+  background-color: red;
+}
+
+.dashboard-navigation {
+  height: 100px;
+  background-color: #2a3336;
+
+  ul {
+    display: flex;
+    align-items: center;
+    max-width: 980px;
+    height: 100%;
+    margin: 0 auto;
+
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #f4f4f4;
+      margin-left: 1rem;
+      list-style: none;
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      a {
+        color: #f4f4f4;
+        text-decoration: none;
+      }
+
+      &:first-of-type {
+        margin-right: 3rem;
+      }
+
+      &:last-child {
+        margin-right: auto;
+      }
+    }
+  }
+}
