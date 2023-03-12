@@ -90,15 +90,24 @@ exports.loginUser = async function (req, res) {
     `, [body.email]);
 
     if(!loginUserResponse.rowCount) {
-      // 1. email not found. want to register?
-      // return res.status(400).render('pages/login');
-      return res.json('email not found.');
+      // 1. want to register?
+      return res.render('pages/login', {
+        errors: ['آدرس ایمیل نادرست می باشد'],
+        formData: {
+          email: body.email,
+          password: body.password
+        }
+      })
     }
 
     if(loginUserResponse.rows[0].password !== body.password) {
-      // 1. send email/password incorrectness error.
-      // return res.status(400).render('pages/login');
-      return res.json('email/password incorrect')
+      return res.render('pages/login', {
+        errors: ['آدرس ایمیل یا رمزعبور نادرست می باشد'],
+        formData: {
+          email: body.email,
+          password: body.password
+        }
+      })
     }
 
     req.session.regenerate(function(err) {
