@@ -12,5 +12,6 @@ router.post('/new', validateNewUser, createNewUser);
 router.post('/login', validateLogin, loginUser);
 router.get('/logout', logoutUser);
 router.get('/me', getCurrentUser);
+router.use('*', (_, res) => res.redirect('/')); // fallback route
 
 module.exports = router;
