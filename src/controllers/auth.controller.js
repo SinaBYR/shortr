@@ -8,11 +8,14 @@ exports.logoutUser = function(req, res) {
 
   req.session.user = null;
   req.session.save(function(err) {
+    // 1. redirect to a 500 error view
     if(err) return res.status(500).json(err.message);
 
     req.session.regenerate(function(err) {
+      // 1. redirect to a 500 error view
       if(err) return res.status(500).json(err.message);
 
+      // 1. send logout feedback in a different way, and use redirect instead of render
       res.render('pages/login', {
         logoutFeedback: {
           message: 'شما با موفقیت از حساب کاربری خود خارج شدید'
@@ -47,10 +50,13 @@ exports.createNewUser = async function(req, res) {
     `,[body.email, body.fullName, body.password]);
 
     if(!registerUserRes.rowCount) {
+      // 1. this is a better way of handling server errors.
+      // 2. update other routes to implement this way.
       throw new Error('An unexpected error occured.');
     }
 
     req.session.regenerate(function(err) {
+      // 1. redirect to a 500 error view
       if(err) return res.status(500).json(err.message);
 
       req.session.user = {
@@ -58,13 +64,14 @@ exports.createNewUser = async function(req, res) {
       };
 
       req.session.save(function(err) {
+        // 1. redirect to a 500 error view
         if(err) return res.status(500).json(err.message);
 
-        // 1. render a view
-        res.status(201).json('User account created successfully.');
+        res.redirect('/dashboard');
       })
     })
   } catch(err) {
+    // 1. redirect to a 500 error view
     res.status(500).json(err.message);
   }
 }
@@ -91,7 +98,6 @@ exports.loginUser = async function (req, res) {
     `, [body.email]);
 
     if(!loginUserResponse.rowCount) {
-      // 1. want to register?
       return res.render('pages/login', {
         errors: ['آدرس ایمیل نادرست می باشد'],
         formData: {
@@ -112,6 +118,7 @@ exports.loginUser = async function (req, res) {
     }
 
     req.session.regenerate(function(err) {
+      // 1. redirect to a 500 error view
       if(err) return res.status(500).json(err.message);
 
       req.session.user = {
@@ -119,15 +126,14 @@ exports.loginUser = async function (req, res) {
       };
 
       req.session.save(function(err) {
+        // 1. redirect to a 500 error view
         if(err) return res.status(500).json(err.message);
 
-        // 1. send user info alongside other resources.
-        // res.render('pages/login');
-        res.json('cool');
+        res.redirect('/dashboard');
       })
     })
   } catch(err) {
-    // 1. render a 500 error page.
+    // 1. redirect to a 500 error view
     res.status(500).send('Server Error');
   }
 }
@@ -153,6 +159,7 @@ exports.getCurrentUser = async function(req, res) {
     // 1. render a view
     res.json(fetchUserRes.rows[0]);
   } catch(err) {
+    // 1. redirect to a 500 error view
     res.status(500).send(err.message); // or "Server Error"
   }
 }
