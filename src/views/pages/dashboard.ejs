@@ -5,6 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/css/fontawesome/css/fontawesome.min.css">
+  <link rel="stylesheet" href="/css/fontawesome/css/solid.min.css">
   <title>Shortr | Link Shortening Tool</title>
 </head>
 <body>
@@ -19,11 +21,23 @@
       <li>
         <a href="/dashboard/ticket">تیکت</a>
       </li>
-      <li>
-        <div>سینا بیرق دار</div>
-        <!-- <div><%= locals.user.email %></div> -->
-        <!-- <a href="/auth/logout" id="btn-logout">خروج</a> -->
-      </li>
+      <div class="navigation-profile">
+        <button class="navigation-profile-button">
+          <span>سینا بیرق دار</span>
+          &nbsp;&nbsp;
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="navigation-profile-dropdown">
+          <a href="/profile">
+            <i class="fa-solid fa-user"></i>
+            <span>حساب کاربری</span>
+          </a>
+          <a href="/auth/logout">
+            <i class="fa-solid fa-power-off"></i>
+            <span>خروج</span>
+          </a>
+        </div>
+      </div>
     </ul>
   </nav>
   
