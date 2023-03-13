@@ -38,6 +38,11 @@
   color: #f4f4f4;
   background-color: #2a3336;
   border: none;
+  cursor: pointer;
+}
+
+.navigation-profile-dropdown.hidden {
+  display: none;
 }
 
 .navigation-profile-dropdown {
