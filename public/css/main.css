@@ -1,89 +1,17 @@
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 3 | @import './forms';
+ *   |         ^^^^^^^^^
+ *   '
+ *   src/scss/index.scss 3:9  root stylesheet */
 
-body {
-  color: #EB6440;
-  background-color: #EFF5F5;
-  direction: rtl;
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 3 \2502  @import './forms';\a   \2502          ^^^^^^^^^\a   \2575 \a   src/scss/index.scss 3:9  root stylesheet";
 }
-
-.main-navigation {
-  height: 100px;
-  background-color: #2C3639;
-  background-color: #2a3336;
-}
-.main-navigation ul {
-  display: flex;
-  max-width: 980px;
-  height: 100%;
-  margin: 0 auto;
-}
-.main-navigation ul li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  margin-left: 1rem;
-}
-.main-navigation ul li a {
-  color: #EB6440;
-}
-.main-navigation ul li:last-child {
-  margin-right: auto;
-}
-
-.main-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 980px;
-  height: 500px;
-  padding: 0 1rem;
-  margin: 0 auto;
-}
-.main-container h1 {
-  font-size: 1.8rem;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-.main-container form {
-  margin-bottom: 3rem;
-}
-.main-container form input {
-  display: inline-block;
-  width: 500px;
-  font-size: 1rem;
-  padding: 0.25rem;
-  margin-bottom: 1rem;
-  direction: ltr;
-}
-
-.benefits-details {
-  height: 100%;
-}
-.benefits-details p {
-  line-height: 1.4;
-}
-.benefits-details ul {
-  margin-right: 2rem;
-}
-.benefits-details ul li {
-  margin: 1rem 0;
-}
-
-.button {
-  display: inline-block;
-  color: #14181a;
-  color: #EB6440;
-  background-color: #EB6440;
-  background-color: #2a3336;
-  font-size: 1rem;
-  padding: 0.3rem 1rem;
-  cursor: pointer;
-}
-
-/*# sourceMappingURL=main.css.map */
