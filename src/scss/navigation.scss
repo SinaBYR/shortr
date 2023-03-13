@@ -1,0 +1,27 @@
+.main-navigation {
+  height: 100px;
+  background-color: #2a3336;
+
+  ul {
+    display: flex;
+    max-width: 980px;
+    height: 100%;
+    margin: 0 auto;
+
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      margin-left: 1rem;
+
+      a {
+        color: #EB6440;
+      }
+
+      &:last-child {
+        margin-right: auto;
+      }
+    }
+  }
+}

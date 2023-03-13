@@ -4,16 +4,21 @@
   "description": "Simple, fast and reliable URL shortener",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js & npm run sass",
+    "dev": "npm run nodemon & npm run sass",
+    "serve": "npm run nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon src/index.js",
     "sass": "sass --watch src/scss/index.scss public/css/main.css"
   },
   "author": "Sina Beyraghdar",
   "license": "ISC",
   "dependencies": {
+    "connect-pg-simple": "^8.0.0",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^6.15.0",
     "pg": "^8.9.0",
     "sass": "^1.58.3",
     "uniqid": "^5.4.0"

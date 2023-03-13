@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/main.css" type="text/css">
+  <title>Shortr | Link Shortening Tool</title>
+</head>
+<body>
+
+  <%- include('../partials/navigation') %>
+  
+  <main class="login-container">
+    <% if(locals.logoutFeedback && locals.logoutFeedback.message) { %>
+      <div class="logout-feedback">
+        <%= locals.logoutFeedback.message %>
+      </div>
+    <% }%>
+    <h2>ورود</h2>
+    <% if (typeof errors != 'undefined' && Object.keys(errors).length != 0) { %>
+      <ul class="form-errors">
+        <% Object.values(errors).forEach(err => {%>
+          <li>
+            <strong><%= err %></strong>
+          </li>
+        <% });%>
+      </ul>
+    <%} %>
+    <form action="/auth/login" method="post" class="login-form">
+      <label for="email">نام کاربری</label>
+      <input type="text" name="email" id="email" value="<%= locals.formData && locals.formData.email ? locals.formData.email : '' %>">
+      <label for="password">رمزعبور</label>
+      <input type="password" name="password" id="password" value="<%= locals.formData && locals.formData.password ? locals.formData.password : '' %>">
+      <button class="btn primary">وارد شوید</button>
+    </form>
+    
+    <div>
+      <span>حساب کاربری ندارید؟</span>
+      <a href="/register">ثبت نام کنید<a>
+    </div>
+  </main>
+
+</body>
+</html>

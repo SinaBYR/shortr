@@ -1,0 +1,16 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+}
+
+.logout-feedback {
+  padding: 1rem;
+  margin-bottom: 3rem;
+  border: 1px solid green;
+}

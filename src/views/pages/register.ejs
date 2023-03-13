@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/main.css" type="text/css">
+  <title>Shortr | Link Shortening Tool</title>
+</head>
+<body>
+  <nav class="main-navigation">
+    <ul>
+      <li>
+        <a href="/">صفحه اصلی</a>
+      </li>
+      <li>
+        <a href="/#pricing">قیمت گذاری</a>
+      </li>
+      <li>
+        <a href="/termsofservice">قوانین و مقررات</a>
+      </li>
+      <li>
+        <a href="/about">درباره ما</a>
+      </li>
+      <li>
+        <a href="/login">ورود/ثبت نام</a>
+      </li>
+    </ul>
+  </nav>
+  
+  <main class="register-container">
+    <h2>ثبت نام</h2>
+    <% if (typeof errors != 'undefined' && Object.keys(errors).length != 0) { %>
+      <ul class="form-errors">
+        <% Object.values(errors).forEach(err => {%>
+          <li>
+            <strong><%= err %></strong>
+          </li>
+        <% });%>
+      </ul>
+    <%} %>
+    <form action="/auth/new" method="post" class="register-form">
+      <label for="fullName">نام و نام خانوادگی</label>
+      <input type="text" name="fullName" id="fullName" value="<%= locals.formData && locals.formData.fullName ? locals.formData.fullName : '' %>">
+      <label for="email">آدرس ایمیل</label>
+      <input type="text" name="email" id="email" value="<%= locals.formData && locals.formData.email ? locals.formData.email : '' %>">
+      <label for="password">رمزعبور</label>
+      <input type="password" name="password" id="password" value="<%= locals.formData && locals.formData.password ? locals.formData.password : '' %>">
+      <label for="repeatPassword">تکرار رمزعبور</label>
+      <input type="password" name="repeatPassword" id="repeatPassword">
+      <label style="display: inline;" for="agreed-on-terms">قوانین و مقررات را خوانده و می پذیرم</label>
+      <input type="checkbox" name="agreed-on-terms" id="agreed-on-terms" style="width: unset;">
+      <button class="btn primary">ثبت نام</button>
+    </form>
+    <div>
+      <span>حساب کاربری دارید؟</span>
+      <a href="/login">وارد شوید</a>
+    </div>
+  </main>
+
+</body>
+</html>

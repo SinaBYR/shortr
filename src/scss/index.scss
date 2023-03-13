@@ -1,41 +1,16 @@
-@import './colors';
-@import './layout';
+@import './dashboard.scss';
+@import './navigation.scss';
 @import './forms';
+@import './login.scss';
+@import './register.scss';
+@import './common.scss';
+@import './utility.scss';
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 
 body {
   color: #EB6440;
   background-color: #EFF5F5;
   direction: rtl;
-}
-
-.main-navigation {
-  height: 100px;
-  background-color: #2C3639;
-  background-color: #2a3336;
-
-  ul {
-    display: flex;
-    max-width: 980px;
-    height: 100%;
-    margin: 0 auto;
-
-    li {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      margin-left: 1rem;
-
-      a {
-        color: #EB6440;
-      }
-
-      &:last-child {
-        margin-right: auto;
-      }
-    }
-  }
 }
 
 .main-container {
@@ -55,11 +30,12 @@ body {
   }
 
   form {
+    width: 500px;
     margin-bottom: 3rem;
-
+  
     input {
       display: inline-block;
-      width: 500px;
+      width: 100%;
       font-size: 1rem;
       padding: 0.25rem;
       margin-bottom: 1rem;
@@ -82,15 +58,4 @@ body {
       margin: 1rem 0;
     }
   }
-}
-
-.button {
-  display: inline-block;
-  color: #14181a;
-  color: #EB6440;
-  background-color: #EB6440;
-  background-color: #2a3336;
-  font-size: 1rem;
-  padding: 0.3rem 1rem;
-  cursor: pointer;
 }

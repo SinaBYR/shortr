@@ -1,17 +1,239 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 3 | @import './forms';
- *   |         ^^^^^^^^^
- *   '
- *   src/scss/index.scss 3:9  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 3 \2502  @import './forms';\a   \2502          ^^^^^^^^^\a   \2575 \a   src/scss/index.scss 3:9  root stylesheet";
+.dashboard-navigation {
+  height: 100px;
+  background-color: #2a3336;
 }
+.dashboard-navigation ul {
+  display: flex;
+  align-items: center;
+  max-width: 980px;
+  height: 100%;
+  margin: 0 auto;
+}
+.dashboard-navigation ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f4f4f4;
+  margin-left: 1rem;
+  list-style: none;
+}
+.dashboard-navigation ul li a {
+  color: #f4f4f4;
+  text-decoration: none;
+}
+.dashboard-navigation ul li a:hover {
+  opacity: 0.8;
+}
+.dashboard-navigation ul li:first-of-type {
+  margin-right: 3rem;
+}
+
+.navigation-profile {
+  position: relative;
+  margin-right: auto;
+}
+
+.navigation-profile-button {
+  font-size: 1rem;
+  color: #f4f4f4;
+  background-color: #2a3336;
+  border: none;
+}
+
+.navigation-profile-dropdown {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateX(-50%);
+  width: 180px;
+  padding: 8px;
+  background-color: #2a3336;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+.navigation-profile-dropdown a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #f4f4f4;
+  padding: 8px;
+  margin-bottom: 8px;
+  text-align: center;
+  text-decoration: none;
+}
+.navigation-profile-dropdown a i {
+  opacity: 0.7;
+  margin-left: 8px;
+}
+.navigation-profile-dropdown a:last-of-type {
+  margin-bottom: 0;
+}
+.navigation-profile-dropdown a:hover {
+  background-color: #2e393b;
+}
+
+.main-navigation {
+  height: 100px;
+  background-color: #2a3336;
+}
+.main-navigation ul {
+  display: flex;
+  max-width: 980px;
+  height: 100%;
+  margin: 0 auto;
+}
+.main-navigation ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-left: 1rem;
+}
+.main-navigation ul li a {
+  color: #EB6440;
+}
+.main-navigation ul li:last-child {
+  margin-right: auto;
+}
+
+.login-form, .register-form {
+  width: 300px;
+}
+.login-form label, .register-form label {
+  display: inline-block;
+}
+.login-form input, .register-form input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.25rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  direction: ltr;
+}
+.login-form button, .register-form button {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+.login-container h2 {
+  margin-bottom: 1rem;
+}
+
+.logout-feedback {
+  padding: 1rem;
+  margin-bottom: 3rem;
+  border: 1px solid green;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+.register-container h2 {
+  margin-bottom: 1rem;
+}
+
+.form-errors {
+  width: 300px;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  border: 1px solid red;
+}
+.form-errors li {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.btn {
+  font-size: 1rem;
+  letter-spacing: 1px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.primary {
+  color: #EB6440;
+  background-color: #2a3336;
+  padding: 0.3rem 0;
+}
+
+.classic {
+  color: #2a3336;
+  background-color: transparent;
+  text-decoration: underline;
+}
+.classic:hover {
+  color: #060707;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: #EB6440;
+  background-color: #EFF5F5;
+  direction: rtl;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 980px;
+  height: 500px;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+.main-container h1 {
+  font-size: 1.8rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.main-container form {
+  width: 500px;
+  margin-bottom: 3rem;
+}
+.main-container form input {
+  display: inline-block;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.25rem;
+  margin-bottom: 1rem;
+  direction: ltr;
+}
+
+.benefits-details {
+  height: 100%;
+}
+.benefits-details p {
+  line-height: 1.4;
+}
+.benefits-details ul {
+  margin-right: 2rem;
+}
+.benefits-details ul li {
+  margin: 1rem 0;
+}
+
+/*# sourceMappingURL=main.css.map */
