@@ -1,0 +1,33 @@
+<nav class="dashboard-navigation">
+  <ul>
+    <div>
+      <h1>شورتر</h1>
+    </div>
+    <li>
+      <a href="/dashboard/new">ثبت لینک جدید</a>
+    </li>
+    <li>
+      <a href="/dashboard/ticket">تیکت</a>
+    </li>
+    <div class="navigation-profile">
+      <button class="navigation-profile-button">
+        <!-- <span>سینا بیرق دار</span> -->
+        <span><%= locals.user.email %></span>
+        &nbsp;&nbsp;
+        <i class="expand-chevron fa-solid fa-chevron-down"></i>
+      </button>
+      <div class="navigation-profile-dropdown hidden">
+        <a href="/profile">
+          <i class="fa-solid fa-user"></i>
+          <span>حساب کاربری</span>
+        </a>
+        <a href="/auth/logout">
+          <i class="fa-solid fa-power-off"></i>
+          <span>خروج</span>
+        </a>
+      </div>
+    </div>
+  </ul>
+</nav>
+
+<script src="/js/navigation.protected.js"></script>
