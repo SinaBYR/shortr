@@ -33,3 +33,13 @@ exports.renderDashboardPage = function(req, res) {
     user: req.session.user
   })
 }
+
+exports.renderCreateNewUrlPage = function(req, res) {
+  if(!req.session.user) {
+    return res.redirect('/login');
+  }
+
+  res.render('pages/new', {
+    user: req.session.user
+  });
+}

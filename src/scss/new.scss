@@ -1,0 +1,24 @@
+.create-new-container {
+  max-width: 780px;
+  margin: 0 auto;
+  margin-top: 2rem;
+
+  h2 {
+    margin-bottom: 2rem;
+  }
+}
+
+.create-new-url-form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+
+  input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.25rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    direction: ltr;
+  }
+}
