@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { renderIndexPage, renderLoginPage, renderRegisterPage, renderDashboardPage } = require('../controllers/pages-controller');
+const { renderIndexPage, renderLoginPage, renderRegisterPage, renderDashboardPage } = require('../controllers/pages.controller');
 const session = require('../middleware/session');
 
 router.use(session());
