@@ -44,7 +44,7 @@
   
   <main class="dashboard-container">
     <h2>لینک های من</h2>
-    <table class="links-table">
+    <table class="links-table" id="urls-table">
       <tr>
         <th>#</th>
         <th>شناسه لینک</th>
@@ -52,51 +52,12 @@
         <th>وضعیت</th>
         <th>عملیات</th>
       </tr>
-      <tr>
-        <td></td>
-        <td>https://google.com</td>
-        <td>1tt822z0leh3js3s</td>
-        <td>فعال</td>
-        <td>
-          <a href="">تغییر</a>
-          <a href="">حذف</a>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro</td>
-
-        <td>1tt822z0leh3js3s</td>
-        <td>فعال</td>
-        <td>
-          <a href="">تغییر</a>
-          <a href="">حذف</a>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>https://google.com</td>
-        <td>1tt822z0leh3js3s</td>
-        <td>فعال</td>
-        <td>
-          <a href="">تغییر</a>
-          <a href="">حذف</a>
-        </td>
-      </tr>
     </table>
+    <button id="create-mock">Create mock</button>
+    <button id="fetch-mock">Fetch my urls</button>
   </main>
 
-  <script>
-    const profileButton = document.querySelector('.navigation-profile-button');
-    const profileDropdown = document.querySelector('.navigation-profile-dropdown');
-    const expandChevron = document.querySelector('.expand-chevron');
-
-    profileButton.addEventListener('click', () => {
-      expandChevron.classList.toggle('fa-chevron-down');
-      expandChevron.classList.toggle('fa-chevron-up');
-      profileDropdown.classList.toggle('hidden');
-    })
-  </script>
+  <script src="/js/dashboard.js"></script>
 </body>
 </html>
 
