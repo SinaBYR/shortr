@@ -9,7 +9,7 @@ exports.createNewShortUrl = async function(req, res) {
 
   let errors = validationResult(req).array().map(err => err.msg);
 
-  if(errors.length) {
+  if(!errors.length) {
     return res.status(400).json(errors);
   }
 
@@ -27,9 +27,9 @@ exports.createNewShortUrl = async function(req, res) {
     let originalUrl = req.body.url;
     let urlId = uniqId();
 
-    let result = await pool.query(
+    await pool.query(
       'insert into url (original_url, url_id, user_id) values ($1, $2, $3)',
-      [originalUrl, urlId, '1b5cd8b6-33a3-4925-8249-9bba4e57ea59']
+      [originalUrl, urlId, req.session.user.id]
     );
 
     res.status(201).end();

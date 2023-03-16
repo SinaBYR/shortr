@@ -44,12 +44,12 @@ exports.createNewUser = async function(req, res) {
 
     // 1. hash password
     // 2. retrieve id, fullName columns
-    let registerUserRes = await pool.query(`
+    let registerUserResponse = await pool.query(`
       insert into user_account (email, fullName, password)
-      values ($1, $2, $3) returning email;
+      values ($1, $2, $3) returning id;
     `,[body.email, body.fullName, body.password]);
 
-    if(!registerUserRes.rowCount) {
+    if(!registerUserResponse.rowCount) {
       // 1. this is a better way of handling server errors.
       // 2. update other routes to implement this way.
       throw new Error('An unexpected error occured.');
@@ -60,6 +60,7 @@ exports.createNewUser = async function(req, res) {
       if(err) return res.status(500).json(err.message);
 
       req.session.user = {
+        id: registerUserResponse.rows[0].id,
         email: body.email
       };
 
@@ -92,7 +93,7 @@ exports.loginUser = async function (req, res) {
 
   try {
     let loginUserResponse = await pool.query(`
-      select email, password
+      select id, email, password
       from user_account
       where email = $1;
     `, [body.email]);
@@ -122,6 +123,7 @@ exports.loginUser = async function (req, res) {
       if(err) return res.status(500).json(err.message);
 
       req.session.user = {
+        id: loginUserResponse.rows[0].id,
         email: body.email
       };
 
