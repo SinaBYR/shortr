@@ -88,3 +88,63 @@
     }
   }
 }
+
+.dashboard-container {
+  max-width: 780px;
+  // padding: 1rem;
+  margin: 0 auto;
+  margin-top: 2rem;
+  // border: 1px solid teal;
+
+  h2 {
+    margin-bottom: 2rem;
+  }
+}
+
+.links-table {
+  // table-layout: fixed;
+  width: 100%;
+  max-width: 780px;
+  background-color: #2a3336;
+  border-collapse: collapse;
+
+  th {
+    color: gray;
+    padding: 16px;
+    border-bottom: 1px solid #7b7b7b;
+    text-align: center;
+  }
+
+  tr {
+    counter-increment: rowNumber;
+
+    &:nth-of-type(2) {
+      counter-reset: rowNumber;
+    }
+  }
+
+  td {
+    color: #f4f4f4;
+    padding: 16px;
+    text-align: center;
+
+    &:first-of-type::before {
+      content: counter(rowNumber);
+      color: #aaaaaa;
+    }
+
+    // &:nth-of-type(2) {
+    //   width: 250px;
+    //   white-space: nowrap;
+    //   overflow: hidden;
+    // }
+
+    a {
+      color: gray;
+
+      &:hover {
+        color: #f4f4f4;
+      }
+    }
+  }
+}

@@ -23,7 +23,8 @@
       </li>
       <div class="navigation-profile">
         <button class="navigation-profile-button">
-          <span>سینا بیرق دار</span>
+          <!-- <span>سینا بیرق دار</span> -->
+          <span><%= locals.user.email %></span>
           &nbsp;&nbsp;
           <i class="expand-chevron fa-solid fa-chevron-down"></i>
         </button>
@@ -42,6 +43,47 @@
   </nav>
   
   <main class="dashboard-container">
+    <h2>لینک های من</h2>
+    <table class="links-table">
+      <tr>
+        <th>#</th>
+        <th>شناسه لینک</th>
+        <th>لینک کوتاه شده</th>
+        <th>وضعیت</th>
+        <th>عملیات</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>https://google.com</td>
+        <td>1tt822z0leh3js3s</td>
+        <td>فعال</td>
+        <td>
+          <a href="">تغییر</a>
+          <a href="">حذف</a>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro</td>
+
+        <td>1tt822z0leh3js3s</td>
+        <td>فعال</td>
+        <td>
+          <a href="">تغییر</a>
+          <a href="">حذف</a>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>https://google.com</td>
+        <td>1tt822z0leh3js3s</td>
+        <td>فعال</td>
+        <td>
+          <a href="">تغییر</a>
+          <a href="">حذف</a>
+        </td>
+      </tr>
+    </table>
   </main>
 
   <script>
@@ -57,3 +99,45 @@
   </script>
 </body>
 </html>
+
+<!-- <script type="module">
+    import { Grid, html } from 'https://unpkg.com/gridjs?module';
+    // import { fa_IR } from 'https://unpkg.com/gridjs/l10n/dist/l10n.module.js';
+
+    new Grid({
+      // columns: ['#', 'شناسه', 'لینک کوتاه شده', 'عملیات'],
+      columns: [
+        {id: 'index', name: '#'},
+        {id: 'url', name: 'شناسه'},
+        {id: 'shortId', name: 'لینک کوتاه شده'},
+        {id: 'operation', name: 'عملیات'}
+      ],
+      data: [
+        {
+          index: "1",
+          url: "https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro",
+          shortId: "1tt822z0leh3js3s",
+          operation: '<a href="">تغییر</a><a href="">حذف</a>'
+        },
+        {
+          index: "2",
+          url: "https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro",
+          shortId: "1tt822z0leh3js3s",
+          operation: '<a href="">تغییر</a><a href="">حذف</a>'
+        },
+        {
+          index: "3",
+          url: "https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro",
+          shortId: "1tt822z0leh3js3s",
+          operation: '<a href="">تغییر</a><a href="">حذف</a>'
+        },
+        {
+          index: "4",
+          url: "https://www.w3schools.com",
+          shortId: "1tt822z0leh3js3s",
+          operation: '<a href="">تغییر</a><a href="">حذف</a>'
+        },
+      ],
+      // language: fa_IR
+    }).render(document.querySelector('.tbl'));
+  </script> -->
