@@ -2,6 +2,25 @@ const pool = require('../../db/db');
 const uniqId = require('uniqid');
 const { validationResult } = require('express-validator');
 
+exports.getAllUrls = async function(req, res) {
+  if(!req.session.user) {
+    return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
+  }
+
+  try {
+    let userId = req.session.user.id;
+    let urlsResult = await pool.query(`
+      select id, original_url, url_id, click_count
+      from url
+      where user_id = $1
+    `, [userId]);
+
+    res.json(urlsResult.rows);
+  } catch(err) {
+    res.status(500).send('Server Error');
+  }
+}
+
 exports.createNewShortUrl = async function(req, res) {
   if(!req.session.user) {
     return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
@@ -9,7 +28,7 @@ exports.createNewShortUrl = async function(req, res) {
 
   let errors = validationResult(req).array().map(err => err.msg);
 
-  if(!errors.length) {
+  if(errors.length) {
     return res.status(400).json(errors);
   }
 
