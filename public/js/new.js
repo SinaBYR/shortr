@@ -1,4 +1,5 @@
 const form = document.querySelector('form');
+const feedbackContainer = document.querySelector('#feedback-container');
 
 form.addEventListener('submit', createNewShortUrl);
 
@@ -18,38 +19,28 @@ async function createNewShortUrl(e) {
 
   if(!response.ok) {
     let errors = await response.json();
-    let ul = document.querySelector('.form-errors');
-
-    if(ul) {
-      ul.innerHTML = '';
-      errors.forEach(err => {
-        ul.innerHTML += renderErrorLi(err);
-      })
-      return;
-    }
-
-    ul = document.createElement('ul');
+    let ul = document.createElement('ul');
     ul.classList.add('form-errors');
-    errors.forEach(err => {
-      ul.innerHTML += renderErrorLi(err);
-    })
-    return form.parentNode.insertBefore(ul, form);
+    errors.forEach(message => ul.append(renderErrorLi(message)));
+    feedbackContainer.replaceChildren(ul);
+    return;
   }
 
   let div = document.createElement('div');
   div.classList.add('success-feedback');
-  div.innerHTML = 'لینک کوتاه جدید ساخته شد';
-  form.parentNode.prepend(div);
+  let span = document.createElement('span');
+  span.innerHTML = 'لینک کوتاه با موفقیت ساخته شد';
+  let anchor = document.querySelector('a');
+  anchor.style.marginRight = '1rem';
+  anchor.innerHTML = 'مشاهده';
+  anchor.href = 'id of new short link';
+  div.append(span, anchor);
+  feedbackContainer.replaceChildren(div);
   form.reset();
-  setTimeout(() => div.remove(), 5000);
 }
 
 function renderErrorLi(message) {
-  let template = `
-    <li>
-      <strong>${message}</strong>
-    </li>
-  `;
-
-  return template;
+  let li = document.createElement('li');
+  li.innerHTML = message;
+  return li;
 }

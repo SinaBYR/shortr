@@ -1,4 +1,4 @@
-.create-new-container {
+#new-container {
   max-width: 780px;
   margin: 0 auto;
   margin-top: 2rem;
@@ -8,17 +8,25 @@
   }
 }
 
-.create-new-url-form {
+#new-form-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#new-form {
   display: flex;
   flex-direction: column;
-  width: 400px;
 
   input {
-    width: 100%;
     font-size: 1rem;
     padding: 0.25rem;
     margin-top: 0.25rem;
     margin-bottom: 1rem;
     direction: ltr;
+  }
+
+  button {
+    width: 100px;
+    margin-right: auto;
   }
 }

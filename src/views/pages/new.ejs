@@ -5,20 +5,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/main.css" type="text/css">
-  <link rel="stylesheet" href="/css/fontawesome/css/fontawesome.min.css">
-  <link rel="stylesheet" href="/css/fontawesome/css/solid.min.css">
   <title>لینک کوتاه جدید</title>
 </head>
 <body>
   
   <%- include('../partials/navigation.protected.ejs') %>
 
-  <main class="create-new-container">
+  <main id="new-container">
     <h2>لینک کوتاه جدید</h2>
-    <form class="create-new-url-form">
-      <input type="text" name="url">
-      <button type="submit" class="button">کوتاه کن</button>
-    </form>
+    <div id="new-form-container">
+      <div id="feedback-container"></div>
+      <form id="new-form">
+        <label for="url">آدرس لینک</label>
+        <input type="text" name="url" id="url">
+        <button type="submit" class="btn primary">ثبت</button>
+      </form>
+    </div>
   </main>
 
   <script src="/js/new.js"></script>
