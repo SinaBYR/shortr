@@ -11,13 +11,13 @@
   }
 }
 
-.primary {
+.btn.primary {
   color: #EB6440;
   background-color: #2a3336;
   padding: 0.3rem 0;
 }
 
-.classic {
+.btn.classic {
   color: #2a3336;
   background-color: transparent;
   text-decoration: underline;
@@ -25,4 +25,22 @@
   &:hover {
     color: #060707;
   }
+}
+
+.form-errors {
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  border: 1px solid red;
+
+  li {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
+}
+
+.success-feedback {
+  padding: 1rem;
+  margin-bottom: 3rem;
+  border: 1px solid green;
 }
