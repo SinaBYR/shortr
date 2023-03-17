@@ -26,6 +26,7 @@ async function createNewShortUrl(e) {
     return;
   }
 
+  let newRecord = await response.json();
   let div = document.createElement('div');
   div.classList.add('success-feedback');
   let span = document.createElement('span');
@@ -33,7 +34,7 @@ async function createNewShortUrl(e) {
   let anchor = document.querySelector('a');
   anchor.style.marginRight = '1rem';
   anchor.innerHTML = 'مشاهده';
-  anchor.href = 'id of new short link';
+  anchor.href = newRecord.url_id;
   div.append(span, anchor);
   feedbackContainer.replaceChildren(div);
   form.reset();
