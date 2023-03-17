@@ -46,12 +46,12 @@ exports.createNewShortUrl = async function(req, res) {
     let originalUrl = req.body.url;
     let urlId = uniqId();
 
-    await pool.query(
-      'insert into url (original_url, url_id, user_id) values ($1, $2, $3)',
+    let result = await pool.query(
+      'insert into url (original_url, url_id, user_id) values ($1, $2, $3) returning url_id',
       [originalUrl, urlId, req.session.user.id]
     );
 
-    res.status(201).end();
+    res.status(201).json(result.rows[0]);
   } catch(err) {
     res.status(500).send('Server Error');
   }
