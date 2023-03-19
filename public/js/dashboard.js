@@ -1,3 +1,5 @@
+const table = document.querySelector('#urls-table');
+
 window.addEventListener('load', async () => {
   let data = await fetchUserLinks();
   renderTableRows(data);
@@ -11,7 +13,7 @@ async function fetchUserLinks() {
 }
 
 function renderTableRows(data) {
-  const tableBody = document.querySelector('#urls-table').querySelector('tbody');
+  const tableBody = table.querySelector('tbody');
   data.forEach(record => {
     tableBody.prepend(createTableRow(record));
   })
@@ -32,7 +34,25 @@ function createTableRow(urlRecord) {
   td4.textContent = 'فعال';
   a1.href = '/update_page + id_of_url';
   a1.textContent = 'تغییر';
-  a2.href = '/delete_the_item';
+  a2.href = '';
+  a2.role = 'button';
+  a2.onclick = async e => {
+    e.preventDefault();
+    let response = await fetch('/api/urls/' + urlRecord.url_id, {
+      method: 'DELETE'
+    });
+
+    if(!response.ok) {
+      // 1. Show error
+      let message = await response.json();
+      console.log(message);
+      return;
+    }
+
+    table.querySelector('tbody').replaceChildren();
+    let data = await fetchUserLinks();
+    renderTableRows(data);
+  }
   a2.textContent = 'حذف';
   a2.style.marginRight = '1rem';
   td5.append(a1, a2);
