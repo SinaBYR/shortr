@@ -16,13 +16,18 @@
   <main class="dashboard-container">
     <h2>لینک های من</h2>
     <table class="links-table" id="urls-table">
-      <tr>
-        <th>#</th>
-        <th>شناسه لینک</th>
-        <th>لینک کوتاه شده</th>
-        <th>وضعیت</th>
-        <th>عملیات</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>شناسه لینک</th>
+          <th>لینک کوتاه شده</th>
+          <th>وضعیت</th>
+          <th>عملیات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="list-end-breakpoint"></tr>
+      </tbody>
     </table>
     <button id="create-mock">Create mock</button>
     <button id="fetch-mock">Fetch my urls</button>
