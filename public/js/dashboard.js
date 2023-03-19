@@ -1,8 +1,10 @@
 const table = document.querySelector('#urls-table');
 
 window.addEventListener('load', async () => {
+  table.classList.add('loading');
   let data = await fetchUserLinks();
   renderTableRows(data);
+  table.classList.remove('loading');
 })
 
 async function fetchUserLinks() {
@@ -38,6 +40,9 @@ function createTableRow(urlRecord) {
   a2.role = 'button';
   a2.onclick = async e => {
     e.preventDefault();
+
+    table.classList.add('loading');
+
     let response = await fetch('/api/urls/' + urlRecord.url_id, {
       method: 'DELETE'
     });
@@ -49,9 +54,8 @@ function createTableRow(urlRecord) {
       return;
     }
 
-    table.querySelector('tbody').replaceChildren();
-    let data = await fetchUserLinks();
-    renderTableRows(data);
+    table.classList.remove('loading');
+    tr.remove();
   }
   a2.textContent = 'حذف';
   a2.style.marginRight = '1rem';
