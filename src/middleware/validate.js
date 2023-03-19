@@ -41,3 +41,16 @@ exports.validateLogin = async function(req, _, next) {
   await Promise.all(validations.map(validation => validation.run(req)));
   next();
 }
+
+exports.validateNewUrl = async function(req, _, next) {
+  let validations = [
+    body('url')
+      .exists({ checkFalsy: true })
+      .withMessage('آدرس لینک اجباری است')
+      .isURL()
+      .withMessage('آدرس لینک معتبر نمی باشد')
+  ];
+
+  await Promise.all(validations.map(validation => validation.run(req)));
+  next();
+}

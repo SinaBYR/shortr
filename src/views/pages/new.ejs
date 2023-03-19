@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/main.css" type="text/css">
+  <title>لینک کوتاه جدید</title>
+</head>
+<body>
+  
+  <%- include('../partials/navigation.protected.ejs') %>
+
+  <main id="new-container">
+    <h2>لینک کوتاه جدید</h2>
+    <div id="new-form-container">
+      <div id="feedback-container"></div>
+      <form id="new-form">
+        <label for="url">آدرس لینک</label>
+        <input type="text" name="url" id="url">
+        <button type="submit" class="btn primary">ثبت</button>
+      </form>
+    </div>
+  </main>
+
+  <script src="/js/new.js"></script>
+</body>
+</html>

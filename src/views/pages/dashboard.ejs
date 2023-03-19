@@ -10,38 +10,71 @@
   <title>Shortr | Link Shortening Tool</title>
 </head>
 <body>
-  <nav class="dashboard-navigation">
-    <ul>
-      <div>
-        <h1>شورتر</h1>
-      </div>
-      <li>
-        <a href="/dashboard/new">ثبت لینک جدید</a>
-      </li>
-      <li>
-        <a href="/dashboard/ticket">تیکت</a>
-      </li>
-      <div class="navigation-profile">
-        <button class="navigation-profile-button">
-          <span>سینا بیرق دار</span>
-          &nbsp;&nbsp;
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <div class="navigation-profile-dropdown">
-          <a href="/profile">
-            <i class="fa-solid fa-user"></i>
-            <span>حساب کاربری</span>
-          </a>
-          <a href="/auth/logout">
-            <i class="fa-solid fa-power-off"></i>
-            <span>خروج</span>
-          </a>
-        </div>
-      </div>
-    </ul>
-  </nav>
+
+  <%- include('../partials/navigation.protected.ejs') %>
   
   <main class="dashboard-container">
+    <h2>لینک های من</h2>
+    <table class="links-table" id="urls-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>شناسه لینک</th>
+          <th>لینک کوتاه شده</th>
+          <th>وضعیت</th>
+          <th>عملیات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="list-end-breakpoint"></tr>
+      </tbody>
+    </table>
+    <button id="create-mock">Create mock</button>
+    <button id="fetch-mock">Fetch my urls</button>
   </main>
+
+  <script src="/js/dashboard.js"></script>
 </body>
 </html>
+
+<!-- <script type="module">
+    import { Grid, html } from 'https://unpkg.com/gridjs?module';
+    // import { fa_IR } from 'https://unpkg.com/gridjs/l10n/dist/l10n.module.js';
+
+    new Grid({
+      // columns: ['#', 'شناسه', 'لینک کوتاه شده', 'عملیات'],
+      columns: [
+        {id: 'index', name: '#'},
+        {id: 'url', name: 'شناسه'},
+        {id: 'shortId', name: 'لینک کوتاه شده'},
+        {id: 'operation', name: 'عملیات'}
+      ],
+      data: [
+        {
+          index: "1",
+          url: "https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro",
+          shortId: "1tt822z0leh3js3s",
+          operation: '<a href="">تغییر</a><a href="">حذف</a>'
+        },
+        {
+          index: "2",
+          url: "https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro",
+          shortId: "1tt822z0leh3js3s",
+          operation: '<a href="">تغییر</a><a href="">حذف</a>'
+        },
+        {
+          index: "3",
+          url: "https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_intro",
+          shortId: "1tt822z0leh3js3s",
+          operation: '<a href="">تغییر</a><a href="">حذف</a>'
+        },
+        {
+          index: "4",
+          url: "https://www.w3schools.com",
+          shortId: "1tt822z0leh3js3s",
+          operation: '<a href="">تغییر</a><a href="">حذف</a>'
+        },
+      ],
+      // language: fa_IR
+    }).render(document.querySelector('.tbl'));
+  </script> -->

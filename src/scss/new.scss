@@ -1,0 +1,32 @@
+#new-container {
+  max-width: 780px;
+  margin: 0 auto;
+  margin-top: 2rem;
+
+  h2 {
+    margin-bottom: 2rem;
+  }
+}
+
+#new-form-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#new-form {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    font-size: 1rem;
+    padding: 0.25rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    direction: ltr;
+  }
+
+  button {
+    width: 100px;
+    margin-right: auto;
+  }
+}
