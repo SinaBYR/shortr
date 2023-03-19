@@ -1,4 +1,27 @@
-const { body } = require('express-validator');
+const { body, param } = require('express-validator');
+
+exports.validateDeleteUrl = async function(req, _, next) {
+  let validation = 
+    param('urlId')
+      .exists({ checkFalsy: true })
+      .withMessage('یک پارامتر اجباری است urlId');
+
+  await validation.run(req);
+  next();
+}
+
+exports.validateNewUrl = async function(req, _, next) {
+  let validations = [
+    body('url')
+      .exists({ checkFalsy: true })
+      .withMessage('آدرس لینک اجباری است')
+      .isURL()
+      .withMessage('آدرس لینک معتبر نمی باشد')
+  ];
+
+  await Promise.all(validations.map(validation => validation.run(req)));
+  next();
+}
 
 exports.validateNewUser = async function(req, _, next) {
   let validations = [
@@ -38,19 +61,6 @@ exports.validateLogin = async function(req, _, next) {
       .isLength({min: 8})
       .withMessage('رمز عبور حداقل باید ۸ کاراکتر باشد')
   ];
-  await Promise.all(validations.map(validation => validation.run(req)));
-  next();
-}
-
-exports.validateNewUrl = async function(req, _, next) {
-  let validations = [
-    body('url')
-      .exists({ checkFalsy: true })
-      .withMessage('آدرس لینک اجباری است')
-      .isURL()
-      .withMessage('آدرس لینک معتبر نمی باشد')
-  ];
-
   await Promise.all(validations.map(validation => validation.run(req)));
   next();
 }

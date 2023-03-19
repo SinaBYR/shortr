@@ -2,6 +2,34 @@ const pool = require('../../db/db');
 const uniqId = require('uniqid');
 const { validationResult } = require('express-validator');
 
+exports.deleteShortLink = async function(req, res) {
+  if(!req.session.user) {
+    return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
+  }
+
+  let errors = validationResult(req).array().map(err => err.msg);
+
+  if(errors.length) {
+    return res.status(400).json(errors);
+  }
+
+  try {
+    let urlId = req.params.urlId;
+    let result = await pool.query(`
+      delete from url
+      where user_id = $1 and url_id = $2
+    `, [req.session.user.id, urlId]);
+
+    if(!result.rowCount) {
+      return res.status(404).send('Resource Not Found');
+    }
+
+    res.status(204).json(result);
+  } catch(err) {
+    res.status(500).send('Server Error');
+  }
+}
+
 exports.getAllUrls = async function(req, res) {
   if(!req.session.user) {
     return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
