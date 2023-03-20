@@ -1,5 +1,5 @@
 const form = document.querySelector('form');
-const feedbackContainer = document.querySelector('#feedback-container');
+const feedbackContainer = document.querySelector('#new-feedback-container');
 
 form.addEventListener('submit', createNewShortUrl);
 
