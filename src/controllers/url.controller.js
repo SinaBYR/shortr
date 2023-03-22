@@ -2,6 +2,30 @@ const pool = require('../../db/db');
 const uniqId = require('uniqid');
 const { validationResult } = require('express-validator');
 
+exports.getUrl = async function(req, res) {
+  if(!req.session.user) {
+    return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
+  }
+  
+  try {
+    let urlId = req.params.urlId;
+
+    let result = await pool.query(`
+      select original_url, click_count
+      from url
+      where user_id = $1 and url_id = $2
+    `, [req.session.user.id, urlId]);
+
+    if(!result.rowCount) {
+      return res.status(404).send('Resource Not Found');
+    }
+
+    res.json(result.rows[0]);
+  } catch(err) {
+    res.status(500).send('Server Error');
+  }
+}
+
 exports.deleteShortLink = async function(req, res) {
   if(!req.session.user) {
     return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
