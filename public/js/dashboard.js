@@ -34,7 +34,7 @@ function createTableRow(urlRecord) {
   td2.textContent = urlRecord.original_url;
   td3.textContent = 'shortr.ir/' + urlRecord.url_id;
   td4.textContent = 'فعال';
-  a1.href = '/update_page + id_of_url';
+  a1.href = '/edit/' + urlRecord.url_id;
   a1.textContent = 'تغییر';
   a2.href = '';
   a2.role = 'button';

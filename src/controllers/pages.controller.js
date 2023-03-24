@@ -43,3 +43,13 @@ exports.renderCreateNewUrlPage = function(req, res) {
     user: req.session.user
   });
 }
+
+exports.renderEditPage = function(req, res) {
+  if(!req.session.user) {
+    return res.redirect('/login');
+  }
+
+  res.render('pages/edit', {
+    user: req.session.user
+  })
+}

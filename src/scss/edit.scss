@@ -1,0 +1,38 @@
+#edit-container {
+  max-width: 780px;
+  margin: 0 auto;
+  margin-top: 2rem;
+
+  & > * {
+    margin-bottom: 2rem;
+  }
+}
+
+.click-count {
+  width: 200px;
+  color: #2a3336;
+  background-color: #adadad;
+  padding: 1rem;
+}
+
+#edit-form-container {
+  width: 360px;
+}
+
+#edit-form {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    font-size: 1rem;
+    padding: 0.25rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    direction: ltr;
+  }
+
+  button {
+    width: 100px;
+    margin-right: auto;
+  }
+}
