@@ -15,6 +15,8 @@ exports.validateNewUrl = async function(req, _, next) {
     body('url')
       .exists({ checkFalsy: true })
       .withMessage('آدرس لینک اجباری است')
+      .custom(value => !value.startsWith('http://') && !value.startsWith('https://'))
+      .withMessage('آدرس لینک را بدون پروتکل (http یا https) وارد نمایید')
       .isURL()
       .withMessage('آدرس لینک معتبر نمی باشد'),
     body('protocol')
