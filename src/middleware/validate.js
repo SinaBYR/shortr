@@ -16,7 +16,12 @@ exports.validateNewUrl = async function(req, _, next) {
       .exists({ checkFalsy: true })
       .withMessage('آدرس لینک اجباری است')
       .isURL()
-      .withMessage('آدرس لینک معتبر نمی باشد')
+      .withMessage('آدرس لینک معتبر نمی باشد'),
+    body('protocol')
+      .exists({ checkFalsy: true })
+      .withMessage('پروتکل')
+      .custom(value => value === 'http' || value === 'https')
+      .withMessage('پروتکل انتخابی مجاز نمی باشد')
   ];
 
   await Promise.all(validations.map(validation => validation.run(req)));
