@@ -1,5 +1,15 @@
 const { body, param } = require('express-validator');
 
+exports.validateUpdateUrl = async function(req, _, next) {
+  let validation = 
+    body('urlId')
+      .exists({ checkFalsy: true })
+      .withMessage('یک فیلد اجباری است urlId');
+
+  await validation.run(req);
+  next();
+}
+
 exports.validateDeleteUrl = async function(req, _, next) {
   let validation = 
     param('urlId')
