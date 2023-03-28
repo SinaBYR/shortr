@@ -114,7 +114,7 @@ exports.redirectShortUrl = async function(req, res) {
 
   try {
     let result = await pool.query(
-      'select original_url from url where url_id = $1',
+      'select original_url, protocol from url where url_id = $1',
       [urlId]
     );
 
@@ -127,7 +127,9 @@ exports.redirectShortUrl = async function(req, res) {
       [urlId]
     );
 
-    res.redirect(result.rows[0].original_url);
+    let completeUrl = result.rows[0].protocol + '://' + result.rows[0].original_url;
+
+    res.redirect(completeUrl);
   } catch(err) {
     res.status(500).send('Server Error');
   }
