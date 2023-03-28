@@ -17,7 +17,7 @@ function renderElement(parent, children) {
 
 function createElements(data) {
   let heading = document.createElement('h2');
-  heading.innerHTML = data.original_url;
+  heading.innerHTML = data.protocol + '://' + data.original_url;
   let clickCountDiv = document.createElement('div');
   clickCountDiv.classList.add('click-count');
   let span1 = document.createElement('span');

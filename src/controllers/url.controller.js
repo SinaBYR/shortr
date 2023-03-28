@@ -11,7 +11,7 @@ exports.getUrl = async function(req, res) {
     let urlId = req.params.urlId;
 
     let result = await pool.query(`
-      select original_url, click_count
+      select original_url, protocol, click_count
       from url
       where user_id = $1 and url_id = $2
     `, [req.session.user.id, urlId]);
