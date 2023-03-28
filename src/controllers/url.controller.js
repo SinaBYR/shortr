@@ -95,12 +95,12 @@ exports.createNewShortUrl = async function(req, res) {
     //   return res.json(existingUrl.rows[0]);
     // }
 
-    let originalUrl = req.body.url;
+    let { url : originalUrl, protocol } = req.body;
     let urlId = uniqId();
 
     let result = await pool.query(
-      'insert into url (original_url, url_id, user_id) values ($1, $2, $3) returning url_id',
-      [originalUrl, urlId, req.session.user.id]
+      'insert into url (original_url, url_id, protocol, user_id) values ($1, $2, $3, $4) returning url_id',
+      [originalUrl, urlId, protocol, req.session.user.id]
     );
 
     res.status(201).json(result.rows[0]);

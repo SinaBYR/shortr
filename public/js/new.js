@@ -5,7 +5,6 @@ form.addEventListener('submit', createNewShortUrl);
 
 async function createNewShortUrl(e) {
   e.preventDefault();
-  console.log(form.protocol.value);
   let headers = new Headers();
   headers.append('Content-Type', 'application/json');
 
