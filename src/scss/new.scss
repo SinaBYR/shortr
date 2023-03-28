@@ -17,7 +17,12 @@
   display: flex;
   flex-direction: column;
 
+  label {
+    display: block;
+  }
+
   input {
+    width: 79%;
     font-size: 1rem;
     padding: 0.25rem;
     margin-top: 0.25rem;
@@ -25,8 +30,24 @@
     direction: ltr;
   }
 
+  select {
+    font-size: 1rem;
+    padding: 0.25rem;
+  }
+
   button {
     width: 100px;
-    margin-right: auto;
+  }
+}
+
+#new-guide {
+  margin-top: 3rem;
+
+  ul {
+    padding-right: 1rem;
+    margin: 1rem 0;
+    li {
+      margin-bottom: 8px;
+    }
   }
 }

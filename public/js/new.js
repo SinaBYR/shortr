@@ -5,7 +5,7 @@ form.addEventListener('submit', createNewShortUrl);
 
 async function createNewShortUrl(e) {
   e.preventDefault();
-
+  console.log(form.protocol.value);
   let headers = new Headers();
   headers.append('Content-Type', 'application/json');
 
@@ -13,7 +13,8 @@ async function createNewShortUrl(e) {
     method: 'POST',
     headers,
     body: JSON.stringify({
-      url: form.url.value
+      url: form.url.value,
+      protocol: form.protocol.value
     })
   });
 
@@ -34,7 +35,7 @@ async function createNewShortUrl(e) {
   let anchor = document.querySelector('a');
   anchor.style.marginRight = '1rem';
   anchor.innerHTML = 'مشاهده';
-  anchor.href = newRecord.url_id;
+  anchor.href = '/edit/' + newRecord.url_id;
   div.append(span, anchor);
   feedbackContainer.replaceChildren(div);
   form.reset();
