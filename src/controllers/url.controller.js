@@ -62,7 +62,7 @@ exports.getAllUrls = async function(req, res) {
   try {
     let userId = req.session.user.id;
     let urlsResult = await pool.query(`
-      select id, original_url, url_id, click_count
+      select id, protocol || '://' || original_url as url, url_id, click_count
       from url
       where user_id = $1
     `, [userId]);

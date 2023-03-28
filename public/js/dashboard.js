@@ -21,7 +21,7 @@ function renderTableRows(data) {
   })
 }
 
-function createTableRow(urlRecord) {
+function createTableRow(shortLink) {
   let tr = document.createElement('tr');
   let td1 = document.createElement('td');
   let td2 = document.createElement('td');
@@ -31,10 +31,10 @@ function createTableRow(urlRecord) {
   let a1 = document.createElement('a');
   let a2 = document.createElement('a');
 
-  td2.textContent = urlRecord.original_url;
-  td3.textContent = 'shortr.ir/' + urlRecord.url_id;
+  td2.textContent = shortLink.url;
+  td3.textContent = 'shortr.ir/' + shortLink.url_id;
   td4.textContent = 'فعال';
-  a1.href = '/edit/' + urlRecord.url_id;
+  a1.href = '/edit/' + shortLink.url_id;
   a1.textContent = 'تغییر';
   a2.href = '';
   a2.role = 'button';
@@ -43,7 +43,7 @@ function createTableRow(urlRecord) {
 
     table.classList.add('loading');
 
-    let response = await fetch('/api/urls/' + urlRecord.url_id, {
+    let response = await fetch('/api/urls/' + shortLink.url_id, {
       method: 'DELETE'
     });
 
