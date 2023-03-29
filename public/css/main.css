@@ -4,14 +4,11 @@
   margin-top: 2rem;
 }
 #edit-container > * {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .click-count {
-  width: 200px;
-  color: #2a3336;
-  background-color: #adadad;
-  padding: 1rem;
+  width: fit-content;
 }
 
 #edit-form-container {
@@ -31,7 +28,6 @@
 }
 #edit-form button {
   width: 100px;
-  margin-right: auto;
 }
 
 .dashboard-navigation {
@@ -314,6 +310,12 @@
   padding: 1rem;
   margin-bottom: 3rem;
   border: 1px solid green;
+}
+
+.failure-feedback {
+  padding: 1rem;
+  margin-bottom: 3rem;
+  border: 1px solid red;
 }
 
 *, *::before, *::after {

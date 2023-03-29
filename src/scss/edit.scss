@@ -4,15 +4,12 @@
   margin-top: 2rem;
 
   & > * {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 }
 
 .click-count {
-  width: 200px;
-  color: #2a3336;
-  background-color: #adadad;
-  padding: 1rem;
+  width: fit-content;
 }
 
 #edit-form-container {
@@ -33,6 +30,5 @@
 
   button {
     width: 100px;
-    margin-right: auto;
   }
 }
