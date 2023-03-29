@@ -20,11 +20,16 @@ exports.updateLink = async function(req, res) {
     let result = await pool.query(`
       update url
       set url_id = $1
-      where user_id = $2 and url_id = $3 returning url_id
+      where user_id = $2 and url_id = $3 and not exists (
+        select 1 from url where url_id = $1
+      ) returning url_id
     `, [newUrlId, req.session.user.id, urlId]);
 
     if(!result.rowCount) {
-      return res.status(404).send('Resource Not Found');
+      // 1. undefined url_id is unhandled (Resource not found)
+      return res.status(409).json({
+        message: 'آدرس لینک کوتاه قبلا ثبت شده است'
+      });
     }
 
     res.json(result.rows[0]);
