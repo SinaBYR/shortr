@@ -53,7 +53,9 @@ exports.getUrl = async function(req, res) {
     `, [req.session.user.id, urlId]);
 
     if(!result.rowCount) {
-      return res.status(404).send('Resource Not Found');
+      return res.status(404).json({
+        message: 'پرونده موردنظر یافت نشد'
+      });
     }
 
     res.json(result.rows[0]);
@@ -81,7 +83,9 @@ exports.deleteShortLink = async function(req, res) {
     `, [req.session.user.id, urlId]);
 
     if(!result.rowCount) {
-      return res.status(404).send('Resource Not Found');
+      return res.status(404).json({
+        message: 'پرونده موردنظر یافت نشد'
+      });
     }
 
     res.status(204).json(result);
@@ -155,6 +159,7 @@ exports.redirectShortUrl = async function(req, res) {
     );
 
     if(!result.rowCount) {
+      // 1. redirect to 404 page
       return res.json('Not found');
     }
 
