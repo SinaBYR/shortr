@@ -28,7 +28,7 @@ exports.updateLink = async function(req, res) {
     if(!result.rowCount) {
       // 1. undefined url_id is unhandled (Resource not found)
       return res.status(409).json({
-        message: 'آدرس لینک کوتاه قبلا ثبت شده است'
+        message: 'آی دی مورد نظر قبلا انتخاب شده است'
       });
     }
 

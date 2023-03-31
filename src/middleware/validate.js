@@ -4,7 +4,7 @@ exports.validateUpdateUrl = async function(req, _, next) {
   let validation = 
     body('urlId')
       .exists({ checkFalsy: true })
-      .withMessage('یک فیلد اجباری است urlId');
+      .withMessage('لینک مورد نظر باید دارای آی دی باشد');
 
   await validation.run(req);
   next();
