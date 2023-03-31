@@ -1,20 +1,10 @@
-const { body, param } = require('express-validator');
+const { body } = require('express-validator');
 
 exports.validateUpdateUrl = async function(req, _, next) {
   let validation = 
     body('urlId')
       .exists({ checkFalsy: true })
       .withMessage('لینک مورد نظر باید دارای آی دی باشد');
-
-  await validation.run(req);
-  next();
-}
-
-exports.validateDeleteUrl = async function(req, _, next) {
-  let validation = 
-    param('urlId')
-      .exists({ checkFalsy: true })
-      .withMessage('یک پارامتر اجباری است urlId');
 
   await validation.run(req);
   next();

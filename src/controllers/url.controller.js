@@ -69,12 +69,6 @@ exports.deleteShortLink = async function(req, res) {
     return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
   }
 
-  let errors = validationResult(req).array().map(err => err.msg);
-
-  if(errors.length) {
-    return res.status(400).json(errors);
-  }
-
   try {
     let urlId = req.params.urlId;
     let result = await pool.query(`
