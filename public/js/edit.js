@@ -5,6 +5,7 @@ window.addEventListener('load', fetchLink);
 
 async function updateLink(e) {
   e.preventDefault();
+  editContainer.querySelector('#edit-form-container').classList.add('loading');
   e.target.disabled = true;
   if(editContainer.firstElementChild.classList.contains('failure-feedback')) {
     editContainer.firstElementChild.remove();
@@ -108,13 +109,46 @@ function createElements(data) {
   span3.innerHTML = '/ shortr.ir';
   span3.style.paddingRight = '1rem';
   inputWrapper.append(label, input, span3);
-  let button = document.createElement('button');
-  button.classList.add('btn', 'primary');
-  button.type = 'submit';
-  button.innerHTML = 'ثبت';
-  button.addEventListener('click', updateLink);
-  editForm.append(inputWrapper, button);
-  editFormContainer.append(editForm);
+  let submitButton = document.createElement('button');
+  submitButton.classList.add('btn', 'primary');
+  submitButton.type = 'submit';
+  submitButton.innerHTML = 'ثبت';
+  submitButton.addEventListener('click', updateLink);
+  editForm.append(inputWrapper, submitButton);
+  let dangerZoneDiv = document.createElement('div');
+  dangerZoneDiv.id = 'edit-danger-zone';
+  let deleteButton = document.createElement('button');
+  deleteButton.classList.add('btn', 'danger');
+  deleteButton.innerHTML = 'حذف لینک';
+  deleteButton.addEventListener('click', async (e) => {
+    editFormContainer.classList.add('loading');
+    e.target.disabled = true;
+
+    let response = await fetch('/api/urls/' + CURRENT_URL_ID, {
+      method: 'DELETE'
+    });
+
+    if(!response.ok) {
+      const errorFeedbackDiv = document.createElement('div');
+      errorFeedbackDiv.classList.add('failure-feedback');
+
+      if(response.status === 404) {
+        e.target.disabled = false;
+        editFormContainer.classList.remove('loading');
+        let error = await response.json();
+        errorFeedbackDiv.innerHTML = error.message;
+        editContainer.prepend(errorFeedbackDiv);
+        return;
+      }
+
+      errorFeedbackDiv.innerHTML = 'مشکلی رخ داده است لطفا مجددا تلاش کنید.';
+      return;
+    }
+
+    document.location.href = '/dashboard';
+  });
+  dangerZoneDiv.append(deleteButton);
+  editFormContainer.append(editForm, dangerZoneDiv);
 
   return [heading, clickCountDiv, editFormContainer];
 }
