@@ -13,39 +13,60 @@ async function updateLink(e) {
   let headers = new Headers();
   headers.append('Content-Type', 'application/json');
 
-  let response = await fetch('/api/urls/' + urlId, {
-    method: 'PATCH',
-    headers,
-    body: JSON.stringify({
-      urlId: form.urlId.value
-    })
-  });
+  try {
+    let response = await fetch('/api/urls/' + urlId, {
+      method: 'PATCH',
+      headers,
+      body: JSON.stringify({
+        urlId: form.urlId.value
+      })
+    });
+  
+    if(!response.ok) {
+      const errorFeedbackDiv = document.createElement('div');
+      errorFeedbackDiv.classList.add('failure-feedback');
+      
+      if(response.status === 409) {
+        let error = await response.json();
+        e.target.disabled = false;
+        errorFeedbackDiv.innerHTML = error.message;
+        editContainer.prepend(errorFeedbackDiv);
+        return;
+      }
 
-  let result = await response.json();
+      if(response.status === 400) {
+        let errors = await response.json();
+        e.target.disabled = false;
+        errors.forEach(message => {
+          let messageDiv = document.createElement('div');
+          messageDiv.innerHTML = message;
+          errorFeedbackDiv.append(messageDiv);
+        })
+        editContainer.prepend(errorFeedbackDiv);
+        return;        
+      }
 
-  if(response.status === 409) {
-    e.target.disabled = false;
+      errorFeedbackDiv.innerHTML = 'مشکلی رخ داده است لطفا مجددا تلاش کنید.';
+      return;
+    }
+
+    let linkData = await response.json();
     const div = document.createElement('div');
-    div.classList.add('failure-feedback');
-    div.innerHTML = result.message;
+    div.classList.add('success-feedback');
+    div.innerHTML = 'تغییرات با موفقیت ثبت شد';
     editContainer.prepend(div);
-    return;
+  
+    setTimeout(() => location.href = '/edit/' + linkData.url_id, 1000);
+  } catch(err) {
+    e.target.disabled = false;
+    console.error(err);
   }
-
-  const div = document.createElement('div');
-  div.classList.add('success-feedback');
-  div.innerHTML = 'تغییرات با موفقیت ثبت شد';
-  editContainer.prepend(div);
-
-  setTimeout(() => location.href = '/edit/' + result.url_id, 1000);
 }
 
 async function fetchLink() {
   let urlId = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
-
   let response = await fetch('/api/urls/' + urlId);
   let result = await response.json();
-  console.log(result);
   renderElement(editContainer, createElements(result));
 }
 
