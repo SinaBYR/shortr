@@ -1,4 +1,6 @@
+const CURRENT_URL_ID = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
 const editContainer = document.querySelector('#edit-container');
+
 window.addEventListener('load', fetchLink);
 
 async function updateLink(e) {
@@ -8,13 +10,12 @@ async function updateLink(e) {
     editContainer.firstElementChild.remove();
   }
 
-  let urlId = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
   let form = document.querySelector('#edit-form');
   let headers = new Headers();
   headers.append('Content-Type', 'application/json');
 
   try {
-    let response = await fetch('/api/urls/' + urlId, {
+    let response = await fetch('/api/urls/' + CURRENT_URL_ID, {
       method: 'PATCH',
       headers,
       body: JSON.stringify({
@@ -64,10 +65,16 @@ async function updateLink(e) {
 }
 
 async function fetchLink() {
-  let urlId = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
-  let response = await fetch('/api/urls/' + urlId);
-  let result = await response.json();
-  renderElement(editContainer, createElements(result));
+  try {
+    let response = await fetch('/api/urls/' + CURRENT_URL_ID);
+    if(response.status === 404) {
+      return location.href = '/dashboard';
+    }
+    let result = await response.json();
+    renderElement(editContainer, createElements(result));
+  } catch(err) {
+    console.error(err);
+  }
 }
 
 function renderElement(parent, children) {
