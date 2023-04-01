@@ -8,6 +8,7 @@ exports.logoutUser = function(req, res) {
 
   req.session.user = null;
   req.session.save(function(err) {
+    // 1. req.session.user is not available. what to do?
     if(err) return res.status(500).render('pages/500');
 
     req.session.regenerate(function(err) {
@@ -162,6 +163,6 @@ exports.getCurrentUser = async function(req, res) {
     // 1. render a view
     res.json(fetchUserRes.rows[0]);
   } catch(err) {
-    res.status(500).render('pages/500');
+    res.status(500).render('pages/500', { user: req.session.user });
   }
 }

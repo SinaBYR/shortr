@@ -34,7 +34,9 @@ exports.updateLink = async function(req, res) {
 
     res.json(result.rows[0]);
   } catch(err) {
-    res.status(500).render('pages/500');
+    res.status(500).render('pages/500', {
+      user: req.session.user
+    });
   }
 }
 
@@ -60,7 +62,9 @@ exports.getUrl = async function(req, res) {
 
     res.json(result.rows[0]);
   } catch(err) {
-    res.status(500).render('pages/500');
+    res.status(500).render('pages/500', {
+      user: req.session.user
+    });
   }
 }
 
@@ -84,7 +88,9 @@ exports.deleteShortLink = async function(req, res) {
 
     res.status(204).json(result);
   } catch(err) {
-    res.status(500).render('pages/500');
+    res.status(500).render('pages/500', {
+      user: req.session.user
+    });
   }
 }
 
@@ -103,7 +109,9 @@ exports.getAllUrls = async function(req, res) {
 
     res.json(urlsResult.rows);
   } catch(err) {
-    res.status(500).render('pages/500');
+    res.status(500).render('pages/500', {
+      user: req.session.user
+    });
   }
 }
 
@@ -139,7 +147,9 @@ exports.createNewShortUrl = async function(req, res) {
 
     res.status(201).json(result.rows[0]);
   } catch(err) {
-    res.status(500).render('pages/500');
+    res.status(500).render('pages/500', {
+      user: req.session.user
+    });
   }
 }
 
@@ -171,6 +181,12 @@ exports.redirectShortUrl = async function(req, res) {
 
     res.redirect(completeUrl);
   } catch(err) {
+    if(req.session.user) {
+      return res.status(500).render('pages/500', {
+        user: req.session.user
+      });
+    }
+
     res.status(500).render('pages/500');
   }
 }
