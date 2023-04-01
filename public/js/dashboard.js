@@ -1,4 +1,4 @@
-const table = document.querySelector('#urls-table');
+const table = document.querySelector('#links-table');
 
 window.addEventListener('load', async () => {
   table.classList.add('loading');
@@ -15,6 +15,14 @@ async function fetchUserLinks() {
 }
 
 function renderTableRows(data) {
+  if(!data.length) {
+    const tableContainer = table.parentElement;
+    let div = document.createElement('div');
+    div.classList.add('empty-table-indicator'); 
+    div.textContent = 'لینکی برای نمایش وجود ندارد';
+    return tableContainer.append(div);
+  }
+
   const tableBody = table.querySelector('tbody');
   data.forEach(record => {
     tableBody.prepend(createTableRow(record));
