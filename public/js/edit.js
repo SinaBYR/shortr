@@ -66,11 +66,16 @@ async function updateLink(e) {
 }
 
 async function fetchLink() {
+  if(!CURRENT_URL_ID) {
+    return document.location.href = '/dashboard';
+  }
+
   try {
     let response = await fetch('/api/urls/' + CURRENT_URL_ID);
     if(response.status === 404) {
-      return location.href = '/dashboard';
+      return document.location.href = '/dashboard';
     }
+
     let result = await response.json();
     renderElement(editContainer, createElements(result));
   } catch(err) {
