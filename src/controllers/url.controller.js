@@ -153,6 +153,12 @@ exports.redirectShortUrl = async function(req, res) {
     );
 
     if(!result.rowCount) {
+      if(req.session.user) {
+        return res.status(404).render('pages/404', {
+          user: req.session.user
+        });
+      }
+
       return res.status(404).render('pages/404');
     }
 

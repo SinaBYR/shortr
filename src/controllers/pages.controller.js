@@ -54,6 +54,12 @@ exports.renderEditPage = function(req, res) {
   })
 }
 
-exports.render404Page = function(_, res) {
+exports.render404Page = function(req, res) {
+  if(req.session.user) {
+    return res.status(404).render('pages/404', {
+      user: req.session.user
+    });
+  }
+
   res.status(404).render('pages/404');
 }
