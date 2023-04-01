@@ -1,3 +1,19 @@
+#notfound-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 100px);
+}
+
+.notfound-text {
+  font-size: 2rem;
+}
+
+.notfound-icon {
+  margin-right: 2rem;
+  font-size: 8rem;
+}
+
 #edit-container {
   max-width: 780px;
   margin: 0 auto;

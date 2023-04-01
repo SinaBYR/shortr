@@ -53,3 +53,7 @@ exports.renderEditPage = function(req, res) {
     user: req.session.user
   })
 }
+
+exports.render404Page = function(_, res) {
+  res.status(404).render('pages/404');
+}
