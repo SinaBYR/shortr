@@ -8,12 +8,10 @@ exports.logoutUser = function(req, res) {
 
   req.session.user = null;
   req.session.save(function(err) {
-    // 1. redirect to a 500 error view
-    if(err) return res.status(500).json(err.message);
+    if(err) return res.status(500).render('pages/500');
 
     req.session.regenerate(function(err) {
-      // 1. redirect to a 500 error view
-      if(err) return res.status(500).json(err.message);
+      if(err) return res.status(500).render('pages/500');
 
       // 1. send logout feedback in a different way, and use redirect instead of render
       res.render('pages/login', {
@@ -50,14 +48,11 @@ exports.createNewUser = async function(req, res) {
     `,[body.email, body.fullName, body.password]);
 
     if(!registerUserResponse.rowCount) {
-      // 1. this is a better way of handling server errors.
-      // 2. update other routes to implement this way.
-      throw new Error('An unexpected error occured.');
+      return res.status(500).render('pages/500');
     }
 
     req.session.regenerate(function(err) {
-      // 1. redirect to a 500 error view
-      if(err) return res.status(500).json(err.message);
+      if(err) return res.status(500).render('pages/500');
 
       req.session.user = {
         id: registerUserResponse.rows[0].id,
@@ -65,8 +60,7 @@ exports.createNewUser = async function(req, res) {
       };
 
       req.session.save(function(err) {
-        // 1. redirect to a 500 error view
-        if(err) return res.status(500).json(err.message);
+        if(err) return res.status(500).render('pages/500');
 
         res.redirect('/dashboard');
       })
@@ -83,8 +77,7 @@ exports.createNewUser = async function(req, res) {
       })
     }
 
-    // 1. redirect to a 500 error view
-    res.status(500).json(err.message);
+    res.status(500).render('pages/500');
   }
 }
 
@@ -130,8 +123,7 @@ exports.loginUser = async function (req, res) {
     }
 
     req.session.regenerate(function(err) {
-      // 1. redirect to a 500 error view
-      if(err) return res.status(500).json(err.message);
+      if(err) return res.status(500).render('pages/500');
 
       req.session.user = {
         id: loginUserResponse.rows[0].id,
@@ -139,15 +131,13 @@ exports.loginUser = async function (req, res) {
       };
 
       req.session.save(function(err) {
-        // 1. redirect to a 500 error view
-        if(err) return res.status(500).json(err.message);
+        if(err) return res.status(500).render('pages/500');
 
         res.redirect('/dashboard');
       })
     })
   } catch(err) {
-    // 1. redirect to a 500 error view
-    res.status(500).send('Server Error');
+    res.status(500).render('pages/500');
   }
 }
 
@@ -172,7 +162,6 @@ exports.getCurrentUser = async function(req, res) {
     // 1. render a view
     res.json(fetchUserRes.rows[0]);
   } catch(err) {
-    // 1. redirect to a 500 error view
-    res.status(500).send(err.message); // or "Server Error"
+    res.status(500).render('pages/500');
   }
 }

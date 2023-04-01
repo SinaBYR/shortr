@@ -1,15 +1,15 @@
-#notfound-container {
+.error-page-404-500-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 100px);
 }
 
-.notfound-text {
+.error-page-404-500-text {
   font-size: 2rem;
 }
 
-.notfound-icon {
+.error-page-404-500-icon {
   margin-right: 2rem;
   font-size: 8rem;
 }

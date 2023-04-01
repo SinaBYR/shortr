@@ -34,7 +34,7 @@ exports.updateLink = async function(req, res) {
 
     res.json(result.rows[0]);
   } catch(err) {
-    res.status(500).send('Server Error');
+    res.status(500).render('pages/500');
   }
 }
 
@@ -60,7 +60,7 @@ exports.getUrl = async function(req, res) {
 
     res.json(result.rows[0]);
   } catch(err) {
-    res.status(500).send('Server Error');
+    res.status(500).render('pages/500');
   }
 }
 
@@ -84,7 +84,7 @@ exports.deleteShortLink = async function(req, res) {
 
     res.status(204).json(result);
   } catch(err) {
-    res.status(500).send('Server Error');
+    res.status(500).render('pages/500');
   }
 }
 
@@ -103,7 +103,7 @@ exports.getAllUrls = async function(req, res) {
 
     res.json(urlsResult.rows);
   } catch(err) {
-    res.status(500).send('Server Error');
+    res.status(500).render('pages/500');
   }
 }
 
@@ -139,7 +139,7 @@ exports.createNewShortUrl = async function(req, res) {
 
     res.status(201).json(result.rows[0]);
   } catch(err) {
-    res.status(500).send('Server Error');
+    res.status(500).render('pages/500');
   }
 }
 
@@ -153,8 +153,7 @@ exports.redirectShortUrl = async function(req, res) {
     );
 
     if(!result.rowCount) {
-      // 1. redirect to 404 page
-      return res.json('Not found');
+      return res.status(404).render('pages/404');
     }
 
     await pool.query(
@@ -166,6 +165,6 @@ exports.redirectShortUrl = async function(req, res) {
 
     res.redirect(completeUrl);
   } catch(err) {
-    res.status(500).send('Server Error');
+    res.status(500).render('pages/500');
   }
 }

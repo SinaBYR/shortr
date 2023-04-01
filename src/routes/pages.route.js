@@ -19,6 +19,6 @@ router.get('/register', renderRegisterPage);
 router.get('/dashboard', renderDashboardPage);
 router.get('/dashboard/new', renderCreateNewUrlPage);
 router.get(/\/edit\/\w*\/?$/i, renderEditPage);
-router.get('*', render404Page);
+// router.get('*', render404Page);
 
 module.exports = router;
