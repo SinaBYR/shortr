@@ -72,6 +72,17 @@ exports.createNewUser = async function(req, res) {
       })
     })
   } catch(err) {
+    if(err.code === '23505') {
+      return res.status(409).render('pages/register', {
+        errors: ['آدرس ایمیل قبلا ثبت شده است'],
+        formData: {
+          email: body.email,
+          fullName: body.fullName,
+          password: body.password
+        }
+      })
+    }
+
     // 1. redirect to a 500 error view
     res.status(500).json(err.message);
   }
