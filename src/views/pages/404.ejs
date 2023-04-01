@@ -10,7 +10,11 @@
   <title>404 | یافت نشد</title>
 </head>
 <body>
-  <%- include('../partials/navigation'); %>
+  <% if(locals.user) {%>
+    <%- include('../partials/navigation.protected.ejs'); %>
+  <% } else { %>
+    <%- include('../partials/navigation'); %>
+  <% } %>
   <main class="error-page-404-500-container">
     <div class="error-page-404-500-text">
       <h2>خطای ۴۰۴</h2>

@@ -6,6 +6,7 @@ const apiRoutes = require('./routes/api.route');
 const redirectRoutes = require('./routes/redirect.route');
 const pageRoutes = require('./routes/pages.route');
 const authRoutes = require('./routes/auth.route');
+const { render404Page } = require('./controllers/pages.controller');
 
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
@@ -16,6 +17,7 @@ app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
 app.use('/', pageRoutes);
 app.use('/', redirectRoutes);
+app.get('*', render404Page);
 
 app.listen(PORT, () => {
   console.log('Server running on port ' + PORT);
