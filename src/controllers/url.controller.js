@@ -2,6 +2,28 @@ const pool = require('../../db/db');
 const uniqId = require('uniqid');
 const { validationResult } = require('express-validator');
 
+exports.switchActivationState = async function(req, res) {
+  if(!req.session.user) {
+    return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
+  }
+
+  try {
+    let urlId = req.params.urlId;
+
+    await pool.query(`
+      UPDATE url
+      SET is_active = NOT is_active
+      WHERE user_id = $1 AND url_id = $2;
+    `, [req.session.user.id, urlId]);
+
+    res.status(204).end();
+  } catch(err) {
+    res.status(500).render('pages/500', {
+      user: req.session.user
+    });
+  }
+}
+
 exports.updateLink = async function(req, res) {
   if(!req.session.user) {
     return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
