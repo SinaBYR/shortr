@@ -71,7 +71,7 @@ exports.getUrl = async function(req, res) {
     let urlId = req.params.urlId;
 
     let result = await pool.query(`
-      select original_url, protocol, click_count
+      select original_url, protocol, click_count, is_active
       from url
       where user_id = $1 and url_id = $2
     `, [req.session.user.id, urlId]);
@@ -124,7 +124,7 @@ exports.getAllUrls = async function(req, res) {
   try {
     let userId = req.session.user.id;
     let urlsResult = await pool.query(`
-      select id, protocol || '://' || original_url as url, url_id, click_count
+      select id, protocol || '://' || original_url as url, url_id, click_count, is_active
       from url
       where user_id = $1
     `, [userId]);
@@ -180,11 +180,11 @@ exports.redirectShortUrl = async function(req, res) {
 
   try {
     let result = await pool.query(
-      'select original_url, protocol from url where url_id = $1',
+      'select original_url, protocol, is_active from url where url_id = $1',
       [urlId]
     );
 
-    if(!result.rowCount) {
+    if(!result.rowCount || !result.rows[0].is_active) {
       if(req.session.user) {
         return res.status(404).render('pages/404', {
           user: req.session.user
