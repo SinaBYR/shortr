@@ -1,0 +1,19 @@
+// common between new and edit views
+.top-segment {
+  display: flex;
+  align-items: center;
+  background-color: #2a3336;
+  padding: 1rem;
+
+  & *:first-child {
+    margin-left: 1rem;
+  }
+}
+
+// common between new and edit views
+.bottom-segment {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 1rem;
+  border: 1px solid #2a3336;
+}
