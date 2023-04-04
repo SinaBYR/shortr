@@ -3,14 +3,9 @@
   margin: 0 auto;
   margin-top: 2rem;
 
-  h2 {
-    margin-bottom: 2rem;
+  & > * {
+    margin-bottom: 1.5rem;
   }
-}
-
-#new-form-container {
-  max-width: 500px;
-  margin: 0 auto;
 }
 
 #new-form {
@@ -22,7 +17,7 @@
   }
 
   input {
-    width: 78%;
+    width: 50%;
     font-size: 1rem;
     padding: 0.25rem;
     margin-top: 0.25rem;
@@ -37,17 +32,18 @@
 
   button {
     width: 100px;
+    margin-right: auto;
   }
 }
 
-#new-guide {
-  margin-top: 3rem;
+#guide-list {
+  padding-right: 1rem;
 
-  ul {
-    padding-right: 1rem;
-    margin: 1rem 0;
-    li {
-      margin-bottom: 8px;
+  li {
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }

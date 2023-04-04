@@ -12,24 +12,37 @@
   <%- include('../partials/navigation.protected.ejs') %>
 
   <main id="new-container">
-    <h2>لینک کوتاه جدید</h2>
-    <div id="new-form-container">
-      <div id="new-feedback-container"></div>
-      <form id="new-form">
-        <div>
-          <label for="url">آدرس لینک</label>
-          <input type="text" name="url" id="url">
-          <span style="color: black;">://</span>
-          <select name="protocol" id="protocol">
-            <option value="http">HTTP</option>
-            <option value="https">HTTPS</option>
-          </select>
-        </div>
-        <button type="submit" class="btn primary">ثبت</button>
-      </form>
-      <div id="new-guide">
+    <header>
+      <h2>لینک کوتاه جدید</h2>
+    </header>
+    <div id="new-feedback-container"></div>
+    <section>
+      <div class="top-segment">
+        <i class="fa-solid fa-circle-info"></i>
+        <h4>اطلاعات لینک</h4>
+      </div>
+      <div class="bottom-segment">
+        <form id="new-form">
+          <div>
+            <label for="url">آدرس لینک</label>
+            <input type="text" name="url" id="url">
+            <span style="color: black;">://</span>
+            <select name="protocol" id="protocol">
+              <option value="http">HTTP</option>
+              <option value="https">HTTPS</option>
+            </select>
+          </div>
+          <button type="submit" class="btn primary">ثبت</button>
+        </form>
+      </div>
+    </section>
+    <section>
+      <div class="top-segment">
+        <i class="fa-solid fa-circle-question"></i>
         <h4>راهنما</h4>
-        <ul>
+      </div>
+      <div class="bottom-segment">
+        <ul id="guide-list">
           <li>حتما پروتوکل (http یا https) را مطابق با لینک موردنظر انتخاب نمایید.</li>
           <li>آدرس لینک را بدون http یا https وارد کنید.</li>
           <li>عبارت www اختیاری می باشد.</li>
@@ -45,7 +58,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </section>
   </main>
 
   <script src="/js/new.js"></script>

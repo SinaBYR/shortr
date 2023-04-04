@@ -177,13 +177,8 @@
   margin: 0 auto;
   margin-top: 2rem;
 }
-#new-container h2 {
-  margin-bottom: 2rem;
-}
-
-#new-form-container {
-  max-width: 500px;
-  margin: 0 auto;
+#new-container > * {
+  margin-bottom: 1.5rem;
 }
 
 #new-form {
@@ -194,7 +189,7 @@
   display: block;
 }
 #new-form input {
-  width: 78%;
+  width: 50%;
   font-size: 1rem;
   padding: 0.25rem;
   margin-top: 0.25rem;
@@ -207,17 +202,17 @@
 }
 #new-form button {
   width: 100px;
+  margin-right: auto;
 }
 
-#new-guide {
-  margin-top: 3rem;
-}
-#new-guide ul {
+#guide-list {
   padding-right: 1rem;
-  margin: 1rem 0;
 }
-#new-guide ul li {
+#guide-list li {
   margin-bottom: 8px;
+}
+#guide-list li:last-child {
+  margin-bottom: 0;
 }
 
 .dashboard-container {
@@ -376,13 +371,11 @@
 
 .success-feedback {
   padding: 1rem;
-  margin-bottom: 3rem;
   border: 1px solid green;
 }
 
 .failure-feedback {
   padding: 1rem;
-  margin-bottom: 3rem;
   border: 1px solid red;
 }
 
