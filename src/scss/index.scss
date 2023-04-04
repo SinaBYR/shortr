@@ -8,9 +8,16 @@
 @import './login.scss';
 @import './register.scss';
 @import './utility.scss';
+
+@font-face {
+  font-family: Iran;
+  src: url('../../font/IRAN.ttf');
+};
+
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 
 body {
+  font-family: Iran;
   color: #EB6440;
   background-color: #EFF5F5;
   direction: rtl;
