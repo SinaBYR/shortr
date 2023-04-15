@@ -40,7 +40,7 @@ function createTableRow(shortLink) {
 
   td2.textContent = shortLink.url;
   td3.textContent = 'shortr.ir/' + shortLink.url_id;
-  td4.textContent = 'فعال';
+  td4.textContent = shortLink.is_active ? 'فعال' : 'غیرفعال';
   editLink.href = '/edit/' + shortLink.url_id;
   editLink.textContent = 'تغییر';
   td5.append(editLink);
