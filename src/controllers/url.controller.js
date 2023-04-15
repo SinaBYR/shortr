@@ -40,11 +40,11 @@ exports.updateLink = async function(req, res) {
     let newUrlId = req.body.urlId;
 
     let result = await pool.query(`
-      update url
-      set url_id = $1
-      where user_id = $2 and url_id = $3 and not exists (
-        select 1 from url where url_id = $1
-      ) returning url_id
+      UPDATE url
+      SET url_id = $1
+      WHERE user_id = $2 AND url_id = $3 AND NOT EXISTS (
+        SELECT 1 FROM url WHERE url_id = $1
+      ) RETURNING url_id
     `, [newUrlId, req.session.user.id, urlId]);
 
     if(!result.rowCount) {
@@ -71,9 +71,9 @@ exports.getUrl = async function(req, res) {
     let urlId = req.params.urlId;
 
     let result = await pool.query(`
-      select original_url, protocol, click_count, is_active
-      from url
-      where user_id = $1 and url_id = $2
+      SELECT original_url, protocol, click_count, is_active
+      FROM url
+      WHERE user_id = $1 AND url_id = $2
     `, [req.session.user.id, urlId]);
 
     if(!result.rowCount) {
@@ -98,8 +98,8 @@ exports.deleteShortLink = async function(req, res) {
   try {
     let urlId = req.params.urlId;
     let result = await pool.query(`
-      delete from url
-      where user_id = $1 and url_id = $2
+      DELETE FROM url
+      WHERE user_id = $1 AND url_id = $2
     `, [req.session.user.id, urlId]);
 
     if(!result.rowCount) {
@@ -124,9 +124,9 @@ exports.getAllUrls = async function(req, res) {
   try {
     let userId = req.session.user.id;
     let urlsResult = await pool.query(`
-      select id, protocol || '://' || original_url as url, url_id, click_count, is_active
-      from url
-      where user_id = $1
+      SELECT id, protocol || '://' || original_url AS url, url_id, click_count, is_active
+      FROM url
+      WHERE user_id = $1
     `, [userId]);
 
     res.json(urlsResult.rows);
@@ -163,7 +163,7 @@ exports.createNewShortUrl = async function(req, res) {
     let urlId = uniqId();
 
     let result = await pool.query(
-      'insert into url (original_url, url_id, protocol, user_id) values ($1, $2, $3, $4) returning url_id',
+      'INSERT INTO url (original_url, url_id, protocol, user_id) VALUES ($1, $2, $3, $4) RETURNING url_id',
       [originalUrl, urlId, protocol, req.session.user.id]
     );
 
@@ -180,7 +180,7 @@ exports.redirectShortUrl = async function(req, res) {
 
   try {
     let result = await pool.query(
-      'select original_url, protocol, is_active from url where url_id = $1',
+      'SELECT original_url, protocol, is_active FROM url WHERE url_id = $1',
       [urlId]
     );
 
@@ -195,7 +195,7 @@ exports.redirectShortUrl = async function(req, res) {
     }
 
     await pool.query(
-      'update url set click_count = click_count + 1 where url_id = $1',
+      'UPDATE url SET click_count = click_count + 1 WHERE url_id = $1',
       [urlId]
     );
 

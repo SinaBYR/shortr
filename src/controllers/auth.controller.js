@@ -44,8 +44,8 @@ exports.createNewUser = async function(req, res) {
     // 1. hash password
     // 2. retrieve id, fullName columns
     let registerUserResponse = await pool.query(`
-      insert into user_account (email, fullName, password)
-      values ($1, $2, $3) returning id;
+      INSERT INTO user_account (email, fullName, password)
+      VALUES ($1, $2, $3) RETURNING id;
     `,[body.email, body.fullName, body.password]);
 
     if(!registerUserResponse.rowCount) {
@@ -98,9 +98,9 @@ exports.loginUser = async function (req, res) {
 
   try {
     let loginUserResponse = await pool.query(`
-      select id, email, password
-      from user_account
-      where email = $1;
+      SELECT id, email, password
+      FROM user_account
+      WHERE email = $1;
     `, [body.email]);
 
     if(!loginUserResponse.rowCount) {
