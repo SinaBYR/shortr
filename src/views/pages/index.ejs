@@ -10,7 +10,11 @@
   <title>Shortr | Link Shortening Tool</title>
 </head>
 <body>
-  <%- include('../partials/navigation'); %>
+  <% if(locals.user) {%>
+    <%- include('../partials/navigation.protected.ejs'); %>
+  <% } else { %>
+    <%- include('../partials/navigation'); %>
+  <% } %>
   
   <main class="main-container">
     <h1>کوتاه کننده لینک شورتر</h1>

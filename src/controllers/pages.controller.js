@@ -1,6 +1,8 @@
 exports.renderIndexPage = function(req, res) {
   if(req.session.user) {
-    return res.redirect('/dashboard');
+    return res.render('pages/index', {
+      user: req.session.user
+    })
   }
 
   res.render('pages/index.ejs');
