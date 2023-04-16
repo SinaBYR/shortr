@@ -1,15 +1,36 @@
 const table = document.querySelector('#links-table');
 
 window.addEventListener('load', async () => {
-  table.classList.add('loading');
-  let data = await fetchUserLinks();
-  renderTableRows(data);
-  table.classList.remove('loading');
+  try {
+    table.classList.add('loading');
+    let data = await fetchUserLinks();
+    renderTableRows(data);
+    table.classList.remove('loading');
+  } catch(err) {
+    const dashboardContainer = table.parentElement.parentElement;
+    table.remove();
+    let errorContainer = document.createElement('div');
+    errorContainer.classList.add('failure-feedback');
+    errorContainer.style.margin = '1rem auto';
+    errorContainer.style.maxWidth = '780px';
+    let errorHeading = document.createElement('h2');
+    errorHeading.style.textAlign = 'center';
+    errorHeading.textContent = err.message;
+    errorContainer.append(errorHeading);
+    dashboardContainer.replaceWith(errorContainer);  
+  }
 })
 
-async function fetchUserLinks() {
+async function fetchUserLinks() {  
   let response = await fetch('/api/urls');
-  if(!response.ok) console.log(response.statusText);
+  // errors will be handled inside load event handler of this page.
+  if(!response.ok) {
+    if(response.status === 500) {
+      throw new Error('متاسفانه مشکلی در سرور رخ داده است. لطفا بعدا دوباره امتحان کنید.');
+    }
+
+    throw new Error('متاسفانه مشکلی رخ داده است. لطفا بعدا دوباره امتحان کنید.');
+  };
   let result = await response.json();
   return result;
 }

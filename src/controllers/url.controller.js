@@ -131,9 +131,7 @@ exports.getAllUrls = async function(req, res) {
 
     res.json(urlsResult.rows);
   } catch(err) {
-    res.status(500).render('pages/500', {
-      user: req.session.user
-    });
+    res.status(500).end();
   }
 }
 
