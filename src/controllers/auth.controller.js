@@ -45,7 +45,7 @@ exports.createNewUser = async function(req, res) {
     // 2. retrieve id, fullName columns
     let registerUserResponse = await pool.query(`
       INSERT INTO user_account (email, fullName, password)
-      VALUES ($1, $2, $3) RETURNING id;
+      VALUES ($1, $2, $3) RETURNING id, fullname;
     `,[body.email, body.fullName, body.password]);
 
     if(!registerUserResponse.rowCount) {
@@ -57,7 +57,8 @@ exports.createNewUser = async function(req, res) {
 
       req.session.user = {
         id: registerUserResponse.rows[0].id,
-        email: body.email
+        email: body.email,
+        fullName: registerUserResponse.rows[0].fullname
       };
 
       req.session.save(function(err) {
@@ -98,7 +99,7 @@ exports.loginUser = async function (req, res) {
 
   try {
     let loginUserResponse = await pool.query(`
-      SELECT id, email, password
+      SELECT id, fullname, email, password
       FROM user_account
       WHERE email = $1;
     `, [body.email]);
@@ -128,7 +129,8 @@ exports.loginUser = async function (req, res) {
 
       req.session.user = {
         id: loginUserResponse.rows[0].id,
-        email: body.email
+        email: body.email,
+        fullName: loginUserResponse.rows[0].fullname
       };
 
       req.session.save(function(err) {
