@@ -7,13 +7,14 @@ const {
   renderDashboardPage,
   renderCreateNewUrlPage,
   renderEditPage,
-  render404Page
+  renderAboutPage
 } = require('../controllers/pages.controller');
 const session = require('../middleware/session');
 
 router.use(session());
 
 router.get('/', renderIndexPage);
+router.get('/about', renderAboutPage);
 router.get('/login', renderLoginPage);
 router.get('/register', renderRegisterPage);
 router.get('/dashboard', renderDashboardPage);

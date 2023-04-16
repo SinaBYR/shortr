@@ -1,0 +1,15 @@
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 980px;
+  padding: 0 1rem;
+  margin: 0 auto;
+  
+  h2 {
+    font-size: 1.8rem;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+}

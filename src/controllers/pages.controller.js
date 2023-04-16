@@ -63,3 +63,13 @@ exports.render404Page = function(req, res) {
 
   res.status(404).render('pages/404');
 }
+
+exports.renderAboutPage = function(req, res) {
+  if(req.session.user) {
+    return res.render('pages/about', {
+      user: req.session.user
+    });
+  }
+
+  res.render('pages/about');
+}
