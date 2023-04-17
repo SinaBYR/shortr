@@ -4,6 +4,7 @@
   "description": "Simple, fast and reliable URL shortener",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "dev": "npm run nodemon & npm run sass",
     "serve": "npm run nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
