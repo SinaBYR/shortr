@@ -71,7 +71,7 @@ exports.getUrl = async function(req, res) {
     let urlId = req.params.urlId;
 
     let result = await pool.query(`
-      SELECT original_url, protocol, click_count, is_active
+      SELECT original_url, protocol, click_count, is_active, created_at
       FROM url
       WHERE user_id = $1 AND url_id = $2
     `, [req.session.user.id, urlId]);
@@ -124,9 +124,10 @@ exports.getAllUrls = async function(req, res) {
   try {
     let userId = req.session.user.id;
     let urlsResult = await pool.query(`
-      SELECT id, protocol || '://' || original_url AS url, url_id, click_count, is_active
+      SELECT id, protocol || '://' || original_url AS url, url_id, click_count, is_active, created_at
       FROM url
       WHERE user_id = $1
+      ORDER BY created_at
     `, [userId]);
 
     res.json(urlsResult.rows);

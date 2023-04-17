@@ -1,3 +1,4 @@
+moment.locale('fa');
 const CURRENT_URL_ID = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
 const editContainer = document.querySelector('#edit-container');
 
@@ -101,11 +102,16 @@ function createElements(data) {
   header.id = 'edit-header';
   let heading = document.createElement('h2');
   heading.textContent = data.protocol + '://' + data.original_url;
+  let linkCreationDateDiv = document.createElement('div');
+  let linkCreationDateSpan = document.createElement('span');
+  linkCreationDateSpan.textContent = moment(data.created_at).fromNow();
+  linkCreationDateDiv.append(linkCreationDateSpan);
+
   let linkActivationStateDiv = document.createElement('div');
   let linkActivationStateSpan = document.createElement('span');
   linkActivationStateSpan.textContent = data.is_active ? 'فعال' : 'غیرفعال';
   linkActivationStateDiv.append(linkActivationStateSpan);
-  header.append(heading, linkActivationStateDiv);
+  header.append(heading, linkCreationDateDiv, linkActivationStateDiv);
 
   let stasticsDiv = document.createElement('section');
   let stasticsTopSegment = document.createElement('div');

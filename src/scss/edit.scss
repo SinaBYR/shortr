@@ -12,9 +12,16 @@
   display: flex;
   align-items: center;
   
-  & > *:last-child {
+  & > *:not(:first-child) {
     background-color: #2a3336;
     padding: 0.5rem 1rem;
+  }
+
+  & > *:last-child {
+    margin-right: 1rem;
+  }
+
+  & > *:nth-last-child(2) {
     margin-right: auto;
   }
 }
