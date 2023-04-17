@@ -2,7 +2,7 @@ const expressSession = require('express-session');
 const connectPsqlSimple = require('connect-pg-simple');
 const PostgreSqlStore = connectPsqlSimple(expressSession);
 const sessionStore = new PostgreSqlStore({
-  conString: 'postgresql://postgres:Sina13801111@127.0.0.1:5432/shortr',
+  conString: process.env.DATABASE_URL,
 });
 
 function session() {
