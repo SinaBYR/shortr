@@ -1,3 +1,32 @@
+#account-container {
+  max-width: 780px;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+#account-container > * {
+  margin-bottom: 1.5rem;
+}
+
+#update-user-form {
+  display: flex;
+  flex-direction: column;
+}
+#update-user-form label {
+  display: block;
+}
+#update-user-form input {
+  width: 50%;
+  font-size: 1rem;
+  padding: 0.25rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  direction: ltr;
+}
+#update-user-form button {
+  width: 100px;
+  margin-right: auto;
+}
+
 .about-container {
   display: flex;
   flex-direction: column;

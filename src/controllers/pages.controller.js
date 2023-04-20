@@ -75,3 +75,13 @@ exports.renderAboutPage = function(req, res) {
 
   res.render('pages/about');
 }
+
+exports.renderAccountPage = function(req, res) {
+  if(!req.session.user) {
+    return res.redirect('/login');
+  }
+
+  res.render('pages/account', {
+    user: req.session.user
+  });
+}

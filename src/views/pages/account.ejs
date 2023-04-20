@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/main.css" type="text/css">
+  <title>شورتر | حساب کاربری</title>
+</head>
+<body>
+  
+  <%- include('../partials/navigation.protected.ejs') %>
+
+  <main id="account-container">
+    <header>
+      <h2>حساب کاربری</h2>
+    </header>
+    <div id="account-feedback-container"></div>
+    <section id="update-user">
+      <div class="top-segment">
+        <i class="fa-solid fa-user"></i>
+        <h4>اطلاعات کاربر</h4>
+      </div>
+      <div class="bottom-segment">
+        <form id="update-user-form">
+          <div>
+            <label for="fullName">نام و نام خانوادگی</label>
+            <input type="text" name="fullName" dir="rtl" id="fullName" value="<%= locals.user.fullName %>">
+          </div>
+          <div>
+            <label for="email">آدرس ایمیل</label>
+            <input type="text" name="email" id="email" value="<%= locals.user.email %>">
+          </div>
+          <button type="submit" class="btn primary">ثبت</button>
+        </form>
+      </div>
+    </section>
+    <section id="change-password">
+      <div class="top-segment">
+        <i class="fa-solid fa-lock"></i>
+        <h4>تغییر رمزعبور</h4>
+      </div>
+      <div class="bottom-segment">
+        <form id="update-password-form">
+          <div>
+            <label for="current-password">رمزعبور فعلی</label>
+            <input type="password" name="current-password" dir="rtl" id="current-password" />
+          </div>
+          <div>
+            <label for="new-password">رمزعبور جدید</label>
+            <input type="password" name="new-password" id="new-password" />
+          </div>
+          <button type="submit" class="btn primary">ثبت</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/account.js"></script>
+</body>
+</html>
