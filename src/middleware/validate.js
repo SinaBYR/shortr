@@ -1,5 +1,21 @@
 const { body } = require('express-validator');
 
+exports.validateUpdateUser = async function(req, _, next) {
+  let validations = [
+    body('email')
+      .exists({ checkFalsy: true })
+      .withMessage('آدرس ایمیل یک فیلد اجباری است')
+      .isEmail()
+      .withMessage('آدرس ایمیل نامعتبر است'),
+    body('fullName')
+      .exists({ checkFalsy: true })
+      .withMessage('نام و نام خانوادگی یک فیلد اجباری است'),
+  ];
+
+  await Promise.all(validations.map(validation => validation.run(req)));
+  next();
+}
+
 exports.validateUpdateUrl = async function(req, _, next) {
   let validation = 
     body('urlId')

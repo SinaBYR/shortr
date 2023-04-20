@@ -168,3 +168,43 @@ exports.getCurrentUser = async function(req, res) {
     res.status(500).render('pages/500', { user: req.session.user });
   }
 }
+
+exports.updateUser = async function(req, res) {
+  if(!req.session.user) {
+    return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
+  }
+
+  let errors = validationResult(req).array().map(err => err.msg);
+
+  if(errors.length) {
+    return res.status(400).json(errors);
+  }
+
+  try {
+    let { fullName, email } = req.body;
+    let result = await pool.query(`
+      UPDATE user_account
+      SET email = $1, fullname = $2
+      WHERE id = $3 AND NOT EXISTS (
+        SELECT 1 FROM user_account WHERE id != $3 AND email = $1
+      ) RETURNING email, fullName
+    `, [email, fullName, req.session.user.id]);
+
+    if(!result.rowCount) {
+      return res.status(409).json({ message: 'آدرس ایمیل قبلا انتخاب شده است' });
+    }
+
+    req.session.user.email = result.rows[0].email;
+    req.session.user.fullName = result.rows[0].fullname;
+
+    req.session.save(function(err) {
+      if(err) return res.status(500).render('pages/500');
+
+      res.status(200).json(result.rows[0]);
+    })
+  } catch(err) {
+    res.status(500).render('pages/500', {
+      user: req.session.user
+    });
+  }
+}

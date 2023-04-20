@@ -9,10 +9,12 @@ const {
   switchActivationState
 } = require('../controllers/url.controller');
 const session = require('../middleware/session');
-const { validateNewUrl, validateUpdateUrl } = require('../middleware/validate');
+const { validateNewUrl, validateUpdateUrl, validateUpdateUser } = require('../middleware/validate');
+const { updateUser } = require('../controllers/auth.controller');
 
 router.use(session());
 
+router.put('/me', validateUpdateUser, updateUser);
 router.post('/urls/:urlId/switchActivationState', switchActivationState);
 router.patch('/urls/:urlId', validateUpdateUrl, updateLink);
 router.get('/urls/:urlId', getUrl);
