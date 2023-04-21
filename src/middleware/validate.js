@@ -1,5 +1,21 @@
 const { body } = require('express-validator');
 
+exports.validateChangePassword = async function(req, _, next) {
+  let validations = [
+    body('currentPassword')
+      .exists({ checkFalsy: true })
+      .withMessage('رمز عبور فعلی یک فیلد اجباری است'),
+    body('newPassword')
+      .exists({ checkFalsy: true })
+      .withMessage('رمز عبور جدید یک فیلد اجباری است')
+      .isLength({min: 8})
+      .withMessage('رمز عبور حداقل باید ۸ کاراکتر باشد')
+  ];
+
+  await Promise.all(validations.map(validation => validation.run(req)));
+  next();
+}
+
 exports.validateUpdateUser = async function(req, _, next) {
   let validations = [
     body('email')

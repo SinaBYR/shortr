@@ -208,3 +208,45 @@ exports.updateUser = async function(req, res) {
     });
   }
 }
+
+exports.changePassword = async function(req, res) {
+  if(!req.session.user) {
+    return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
+  }
+
+  let errors = validationResult(req).array().map(err => err.msg);
+
+  if(errors.length) {
+    return res.status(400).json(errors);
+  }
+
+  try {
+    let { currentPassword, newPassword } = req.body;
+
+    let check = await pool.query(`
+      SELECT password
+      FROM user_account
+      WHERE id = $1
+    `, [req.session.user.id]);
+
+    if(currentPassword !== check.rows[0].password) {
+      return res.status(400).json({ message: 'رمزعبور فعلی همخوانی ندارد' });
+    }
+
+    if(newPassword === check.rows[0].password) {
+      return res.status(409).json({ message: 'رمزعبور جدید با رمزعبور فعلی نمی تواند یکسان باشد' });
+    }
+
+    await pool.query(`
+      UPDATE user_account
+      SET password = $1
+      WHERE id = $2 AND password = $3
+    `, [newPassword, req.session.user.id, currentPassword]);
+
+    res.status(200).json('OK');
+  } catch(err) {
+    res.status(500).render('pages/500', {
+      user: req.session.user
+    });
+  }
+}
