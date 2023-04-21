@@ -230,7 +230,7 @@ exports.changePassword = async function(req, res) {
     `, [req.session.user.id]);
 
     if(currentPassword !== check.rows[0].password) {
-      return res.status(400).json({ message: 'رمزعبور فعلی همخوانی ندارد' });
+      return res.status(409).json({ message: 'رمزعبور فعلی همخوانی ندارد' });
     }
 
     if(newPassword === check.rows[0].password) {
