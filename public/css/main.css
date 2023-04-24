@@ -141,8 +141,10 @@
 }
 
 .dashboard-navigation {
+  position: relative;
   height: 100px;
   background-color: #2a3336;
+  padding: 0 1rem;
 }
 .dashboard-navigation ul {
   display: flex;
@@ -168,6 +170,15 @@
 }
 .dashboard-navigation ul li:first-of-type {
   margin-right: 3rem;
+}
+.dashboard-navigation ul li:last-of-type {
+  margin-left: 0;
+}
+
+@media screen and (max-width: 480px) {
+  #desktop-ul {
+    display: none;
+  }
 }
 
 .navigation-profile {
@@ -220,6 +231,50 @@
 }
 .navigation-profile-dropdown a:hover {
   background-color: #2e393b;
+}
+
+#mobile-ul {
+  display: none;
+}
+@media screen and (max-width: 480px) {
+  #mobile-ul {
+    display: flex;
+  }
+}
+
+.mobile-menu {
+  position: absolute;
+  display: none;
+  top: 90px;
+  left: 8px;
+  background-color: #2a3336;
+  padding: 1rem;
+  border: 1px solid #f4f4f4;
+  border-radius: 5px;
+}
+.mobile-menu.open {
+  display: block;
+}
+.mobile-menu > * {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #f4f4f4;
+  padding: 8px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.mobile-menu > *:first-of-type {
+  color: #2a3336;
+  background-color: #EB6440;
+  border-radius: 5px;
+}
+.mobile-menu > *:last-of-type {
+  margin-bottom: 0;
+}
+.mobile-menu a {
+  color: #f4f4f4;
+  text-decoration: none;
 }
 
 #new-container {
@@ -322,6 +377,7 @@
 .main-navigation {
   height: 100px;
   background-color: #2a3336;
+  padding: 0 1rem;
 }
 .main-navigation ul {
   display: flex;
@@ -341,6 +397,7 @@
 }
 .main-navigation ul li:last-child {
   margin-right: auto;
+  margin-left: 0;
 }
 
 .login-form, .register-form {
@@ -440,6 +497,39 @@
   filter: opacity(0.7);
   cursor: progress;
   pointer-events: none;
+}
+
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 26px;
+  height: 24px;
+  z-index: 2;
+}
+.burger div {
+  width: 15%;
+  height: 14%;
+  background-color: #EB6440;
+  transition: transform 300ms ease, visibility 300ms ease, opacity 300ms ease, width 300ms ease;
+  border-radius: 8px;
+}
+.burger.open div:nth-of-type(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+  width: 100%;
+  height: 10%;
+}
+.burger.open div:nth-of-type(2) {
+  visibility: hidden;
+  transform: rotateY(45deg) translateX(-40px);
+  opacity: 0;
+}
+.burger.open div:nth-of-type(3) {
+  transform: rotate(-45deg) translate(4px, -5px);
+  width: 100%;
+  height: 10%;
 }
 
 .top-segment {

@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/fontawesome/css/fontawesome.min.css">
 <link rel="stylesheet" href="/css/fontawesome/css/solid.min.css">
 <nav class="dashboard-navigation">
-  <ul>
+  <ul id="desktop-ul">
     <div>
       <h1>شورتر</h1>
     </div>
@@ -10,6 +10,9 @@
     </li>
     <li>
       <a href="/dashboard/new">ثبت لینک جدید</a>
+    </li>
+    <li>
+      <a href="/dashboard/ticket">تیکت</a>
     </li>
     <div class="navigation-profile">
       <button class="navigation-profile-button">
@@ -22,6 +25,39 @@
           <i class="fa-solid fa-user"></i>
           <span>حساب کاربری</span>
         </a>
+        <a href="/auth/logout">
+          <i class="fa-solid fa-power-off"></i>
+          <span>خروج</span>
+        </a>
+      </div>
+    </div>
+  </ul>
+  <ul id="mobile-ul">
+    <div>
+      <h1>شورتر</h1>
+    </div>
+    <div class="burger" id="navigation-protected-burger" style="margin-right: auto;">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="mobile-menu">
+      <div>
+        <span><%= locals.user.fullName %></span>
+      </div>
+      <div>
+        <a href="/dashboard">لینک های من</a>
+      </div>
+      <div>
+        <a href="/dashboard/new">ثبت لینک جدید</a>
+      </div>
+      <div>
+        <a href="/account">
+          <i class="fa-solid fa-user"></i>
+          <span>حساب کاربری</span>
+        </a>
+      </div>
+      <div>
         <a href="/auth/logout">
           <i class="fa-solid fa-power-off"></i>
           <span>خروج</span>
