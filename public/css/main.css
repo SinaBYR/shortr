@@ -311,13 +311,6 @@
 #links-table td a:hover {
   color: #f4f4f4;
 }
-@media screen and (max-width: 500px) {
-  #links-table {
-    width: 100%;
-    width: 400px !important;
-    max-width: 480px;
-  }
-}
 
 .empty-table-indicator {
   color: #f4f4f4;
