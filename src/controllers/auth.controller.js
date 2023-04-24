@@ -41,10 +41,7 @@ exports.createNewUser = async function(req, res) {
   }
 
   try {
-
-    // 1. hash password
-    const hashedPassword = await bcrypt.hash(body.password, 10);
-    // 2. retrieve id, fullName columns
+    let hashedPassword = await bcrypt.hash(body.password, 10);
     let registerUserResponse = await pool.query(`
       INSERT INTO user_account (email, fullName, password)
       VALUES ($1, $2, $3) RETURNING id, fullname;
@@ -116,7 +113,7 @@ exports.loginUser = async function (req, res) {
       })
     }
 
-    const match = await bcrypt.compare(body.password, loginUserResponse.rows[0].password);
+    let match = await bcrypt.compare(body.password, loginUserResponse.rows[0].password);
 
     if(!match) {
       return res.render('pages/login', {
