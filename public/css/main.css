@@ -1,5 +1,6 @@
 #account-container {
   max-width: 780px;
+  padding: 0 1rem;
   margin: 0 auto;
   margin-top: 2rem;
 }
@@ -15,7 +16,7 @@
   display: block;
 }
 #update-user-form input, #change-password-form input {
-  width: 50%;
+  width: 100%;
   font-size: 1rem;
   padding: 0.25rem;
   margin-top: 0.25rem;
