@@ -597,6 +597,11 @@ body {
   margin-bottom: 1rem;
   direction: ltr;
 }
+@media screen and (max-width: 480px) {
+  .main-container p {
+    text-align: center;
+  }
+}
 
 .landing-image {
   width: 680px;
@@ -605,6 +610,11 @@ body {
 }
 .landing-image img {
   width: 100%;
+}
+@media screen and (max-width: 480px) {
+  .landing-image {
+    width: 100%;
+  }
 }
 
 .benefits-details {
