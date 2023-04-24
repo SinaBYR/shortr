@@ -16,7 +16,7 @@
   display: block;
 }
 #update-user-form input, #change-password-form input {
-  width: 100%;
+  width: 50%;
   font-size: 1rem;
   padding: 0.25rem;
   margin-top: 0.25rem;
@@ -26,6 +26,11 @@
 #update-user-form button, #change-password-form button {
   width: 100px;
   margin-right: auto;
+}
+@media screen and (max-width: 580px) {
+  #update-user-form input, #change-password-form input {
+    width: 100%;
+  }
 }
 
 .about-container {
