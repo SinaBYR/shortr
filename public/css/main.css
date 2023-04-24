@@ -60,6 +60,7 @@
 
 #edit-container {
   max-width: 780px;
+  padding: 0 1rem;
   margin: 0 auto;
   margin-top: 2rem;
 }
@@ -80,6 +81,17 @@
 }
 #edit-header > *:nth-last-child(2) {
   margin-right: auto;
+}
+@media screen and (max-width: 500px) {
+  #edit-header > *:not(h2) {
+    font-size: 12px;
+  }
+  #edit-header > *:not(:first-child) {
+    padding: 8px;
+  }
+  #edit-header > *:last-child {
+    margin-right: 4px;
+  }
 }
 
 .click-count {
@@ -103,6 +115,11 @@
 #edit-form button {
   width: 100px;
   margin-right: auto;
+}
+@media screen and (max-width: 500px) {
+  #edit-form input {
+    width: 75%;
+  }
 }
 
 #danger-zone {

@@ -1,5 +1,6 @@
 #edit-container {
   max-width: 780px;
+  padding: 0 1rem;
   margin: 0 auto;
   margin-top: 2rem;
 
@@ -23,6 +24,20 @@
 
   & > *:nth-last-child(2) {
     margin-right: auto;
+  }
+
+  @media screen and (max-width: 500px) {
+    & > *:not(h2) {
+      font-size: 12px;
+    }
+
+    & > *:not(:first-child) {
+      padding: 8px;
+    }
+
+    & > *:last-child {
+      margin-right: 4px;
+    }
   }
 }
 
@@ -49,6 +64,12 @@
   button {
     width: 100px;
     margin-right: auto;
+  }
+
+  @media screen and (max-width: 500px) {
+    input {
+      width: 75%;
+    }
   }
 }
 
