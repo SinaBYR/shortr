@@ -14,6 +14,7 @@
   "author": "Sina Beyraghdar",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "connect-pg-simple": "^8.0.0",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",

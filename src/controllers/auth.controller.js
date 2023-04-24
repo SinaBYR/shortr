@@ -1,4 +1,5 @@
 const pool = require('../../db/db');
+const bcrypt = require('bcrypt');
 const { validationResult } = require('express-validator');
 
 exports.logoutUser = function(req, res) {
@@ -42,11 +43,12 @@ exports.createNewUser = async function(req, res) {
   try {
 
     // 1. hash password
+    const hashedPassword = await bcrypt.hash(body.password, 10);
     // 2. retrieve id, fullName columns
     let registerUserResponse = await pool.query(`
       INSERT INTO user_account (email, fullName, password)
       VALUES ($1, $2, $3) RETURNING id, fullname;
-    `,[body.email, body.fullName, body.password]);
+    `,[body.email, body.fullName, hashedPassword]);
 
     if(!registerUserResponse.rowCount) {
       return res.status(500).render('pages/500');
@@ -114,7 +116,9 @@ exports.loginUser = async function (req, res) {
       })
     }
 
-    if(loginUserResponse.rows[0].password !== body.password) {
+    const match = await bcrypt.compare(body.password, loginUserResponse.rows[0].password);
+
+    if(!match) {
       return res.render('pages/login', {
         errors: ['آدرس ایمیل یا رمزعبور نادرست می باشد'],
         formData: {
@@ -229,19 +233,27 @@ exports.changePassword = async function(req, res) {
       WHERE id = $1
     `, [req.session.user.id]);
 
-    if(currentPassword !== check.rows[0].password) {
+    let match = await bcrypt.compare(currentPassword, check.rows[0].password);
+
+    if(!match) {
       return res.status(409).json({ message: 'رمزعبور فعلی همخوانی ندارد' });
     }
 
-    if(newPassword === check.rows[0].password) {
+    let currentPasswordHashed = check.rows[0].password;
+
+    let isPasswordSame = await bcrypt.compare(newPassword, currentPasswordHashed);
+
+    if(isPasswordSame) {
       return res.status(409).json({ message: 'رمزعبور جدید با رمزعبور فعلی نمی تواند یکسان باشد' });
     }
+
+    let newPasswordHashed = await bcrypt.hash(newPassword, 10);
 
     await pool.query(`
       UPDATE user_account
       SET password = $1
       WHERE id = $2 AND password = $3
-    `, [newPassword, req.session.user.id, currentPassword]);
+    `, [newPasswordHashed, req.session.user.id, currentPasswordHashed]);
 
     res.status(200).json('OK');
   } catch(err) {
