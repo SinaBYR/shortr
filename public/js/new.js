@@ -30,10 +30,10 @@ async function createNewShortUrl(e) {
   let div = document.createElement('div');
   div.classList.add('success-feedback');
   let span = document.createElement('span');
-  span.innerHTML = 'لینک کوتاه با موفقیت ساخته شد';
-  let anchor = document.querySelector('a');
+  span.textContent = 'لینک کوتاه با موفقیت ساخته شد';
+  let anchor = document.createElement('a');
   anchor.style.marginRight = '1rem';
-  anchor.innerHTML = 'مشاهده';
+  anchor.textContent = 'مشاهده';
   anchor.href = '/edit/' + newRecord.url_id;
   div.append(span, anchor);
   feedbackContainer.replaceChildren(div);
@@ -42,6 +42,6 @@ async function createNewShortUrl(e) {
 
 function renderErrorLi(message) {
   let li = document.createElement('li');
-  li.innerHTML = message;
+  li.textContent = message;
   return li;
 }
