@@ -1,6 +1,7 @@
 .main-navigation {
   height: 100px;
   background-color: #2a3336;
+  padding: 0 1rem;
 
   ul {
     display: flex;
@@ -21,6 +22,7 @@
 
       &:last-child {
         margin-right: auto;
+        margin-left: 0;
       }
     }
   }
