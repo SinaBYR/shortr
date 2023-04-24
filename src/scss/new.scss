@@ -1,5 +1,6 @@
 #new-container {
   max-width: 780px;
+  padding: 0 1rem;
   margin: 0 auto;
   margin-top: 2rem;
 
@@ -33,6 +34,12 @@
   button {
     width: 100px;
     margin-right: auto;
+  }
+
+  @media screen and (max-width: 500px) {
+    input {
+      width: 70%;
+    }
   }
 }
 
