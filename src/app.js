@@ -1,8 +1,6 @@
-require('dotenv').config();
 const express = require('express');
 const app = express();
 const path = require('path');
-const PORT = 3000;
 const apiRoutes = require('./routes/api.route');
 const redirectRoutes = require('./routes/redirect.route');
 const pageRoutes = require('./routes/pages.route');
@@ -19,9 +17,5 @@ app.use('/api', apiRoutes);
 app.use('/', pageRoutes);
 app.use('/', redirectRoutes);
 app.get('*', render404Page);
-
-app.listen(PORT, () => {
-  console.log('Server running on port ' + PORT);
-})
 
 module.exports = app;
