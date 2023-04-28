@@ -7,7 +7,7 @@
     "start": "node src/server.js",
     "dev": "npm run nodemon & npm run sass",
     "serve": "npm run nodemon",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=5000",
+    "test": "cross-env NODE_ENV=test jest -o --testTimeout=5000",
     "nodemon": "nodemon src/server.js",
     "sass": "sass --watch src/scss/index.scss public/css/main.css"
   },
