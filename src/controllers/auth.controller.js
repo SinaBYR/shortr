@@ -188,7 +188,7 @@ exports.updateUser = async function(req, res) {
       SET email = $1, fullname = $2
       WHERE id = $3 AND NOT EXISTS (
         SELECT 1 FROM user_account WHERE id != $3 AND email = $1
-      ) RETURNING email, fullName
+      ) RETURNING email, fullname
     `, [email, fullName, req.session.user.id]);
 
     if(!result.rowCount) {
