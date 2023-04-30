@@ -60,9 +60,9 @@ function createTableRow(shortLink) {
   let editLink = document.createElement('a');
 
   td2.textContent = shortLink.url;
-  td3.textContent = 'shortr.ir/' + shortLink.url_id;
+  td3.textContent = 'shortr.ir/' + shortLink.link_id;
   td4.textContent = shortLink.is_active ? 'فعال' : 'غیرفعال';
-  editLink.href = '/edit/' + shortLink.url_id;
+  editLink.href = '/edit/' + shortLink.link_id;
   editLink.textContent = 'تغییر';
   td5.append(editLink);
   tr.append(td1, td2, td3, td4, td5);

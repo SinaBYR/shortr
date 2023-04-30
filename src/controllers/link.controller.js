@@ -13,7 +13,7 @@ exports.switchActivationState = async function(req, res) {
     await pool.query(`
       UPDATE link
       SET is_active = NOT is_active
-      WHERE user_id = $1 AND url_id = $2;
+      WHERE user_id = $1 AND link_id = $2;
     `, [req.session.user.id, linkId]);
 
     res.status(204).end();
@@ -41,14 +41,14 @@ exports.updateLink = async function(req, res) {
 
     let result = await pool.query(`
       UPDATE link
-      SET url_id = $1
-      WHERE user_id = $2 AND url_id = $3 AND NOT EXISTS (
-        SELECT 1 FROM link WHERE url_id = $1
-      ) RETURNING url_id
+      SET link_id = $1
+      WHERE user_id = $2 AND link_id = $3 AND NOT EXISTS (
+        SELECT 1 FROM link WHERE link_id = $1
+      ) RETURNING link_id
     `, [newLinkId, req.session.user.id, linkId]);
 
     if(!result.rowCount) {
-      // 1. undefined url_id is unhandled (Resource not found)
+      // 1. undefined link_id is unhandled (Resource not found)
       return res.status(409).json({
         message: 'آی دی مورد نظر قبلا انتخاب شده است'
       });
@@ -73,7 +73,7 @@ exports.getLink = async function(req, res) {
     let result = await pool.query(`
       SELECT original_url, protocol, click_count, is_active, created_at
       FROM link
-      WHERE user_id = $1 AND url_id = $2
+      WHERE user_id = $1 AND link_id = $2
     `, [req.session.user.id, linkId]);
 
     if(!result.rowCount) {
@@ -99,7 +99,7 @@ exports.deleteLink = async function(req, res) {
     let linkId = req.params.linkId;
     let result = await pool.query(`
       DELETE FROM link
-      WHERE user_id = $1 AND url_id = $2
+      WHERE user_id = $1 AND link_id = $2
     `, [req.session.user.id, linkId]);
 
     if(!result.rowCount) {
@@ -124,7 +124,7 @@ exports.getAllLinks = async function(req, res) {
   try {
     let userId = req.session.user.id;
     let urlsResult = await pool.query(`
-      SELECT id, protocol || '://' || original_url AS url, url_id, click_count, is_active, created_at
+      SELECT id, protocol || '://' || original_url AS url, link_id, click_count, is_active, created_at
       FROM link
       WHERE user_id = $1
       ORDER BY created_at
@@ -150,7 +150,7 @@ exports.createNewLink = async function(req, res) {
   try {
     // 1. Don't let duplicates through maybe??
     // let existingUrl = await pool.query(
-    //   'select * from url where original_url = $1',
+    //   'select * from link where original_url = $1',
     //   [originalUrl]
     // );
 
@@ -162,7 +162,7 @@ exports.createNewLink = async function(req, res) {
     let linkId = uniqId();
 
     let result = await pool.query(
-      'INSERT INTO link (original_url, url_id, protocol, user_id) VALUES ($1, $2, $3, $4) RETURNING url_id',
+      'INSERT INTO link (original_url, link_id, protocol, user_id) VALUES ($1, $2, $3, $4) RETURNING link_id',
       [originalUrl, linkId, protocol, req.session.user.id]
     );
 
@@ -179,7 +179,7 @@ exports.redirectLink = async function(req, res) {
 
   try {
     let result = await pool.query(
-      'SELECT original_url, protocol, is_active FROM link WHERE url_id = $1',
+      'SELECT original_url, protocol, is_active FROM link WHERE link_id = $1',
       [linkId]
     );
 
@@ -194,7 +194,7 @@ exports.redirectLink = async function(req, res) {
     }
 
     await pool.query(
-      'UPDATE link SET click_count = click_count + 1 WHERE url_id = $1',
+      'UPDATE link SET click_count = click_count + 1 WHERE link_id = $1',
       [linkId]
     );
 

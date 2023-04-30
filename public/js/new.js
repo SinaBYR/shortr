@@ -34,7 +34,7 @@ async function createNewShortUrl(e) {
   let anchor = document.createElement('a');
   anchor.style.marginRight = '1rem';
   anchor.textContent = 'مشاهده';
-  anchor.href = '/edit/' + newRecord.url_id;
+  anchor.href = '/edit/' + newRecord.link_id;
   div.append(span, anchor);
   feedbackContainer.replaceChildren(div);
   form.reset();

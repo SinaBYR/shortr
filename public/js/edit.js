@@ -66,7 +66,7 @@ async function updateLink(e) {
     div.innerHTML = 'تغییرات با موفقیت ثبت شد';
     editContainer.prepend(div);
   
-    setTimeout(() => location.href = '/edit/' + linkData.url_id, 1000);
+    setTimeout(() => location.href = '/edit/' + linkData.link_id, 1000);
   } catch(err) {
     editFormWrapper.classList.remove('loading');
     dangerZone.classList.remove('loading');
