@@ -8,7 +8,7 @@ async function createNewShortUrl(e) {
   let headers = new Headers();
   headers.append('Content-Type', 'application/json');
 
-  let response = await fetch('/api/new', {
+  let response = await fetch('/api/links', {
     method: 'POST',
     headers,
     body: JSON.stringify({

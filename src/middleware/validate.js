@@ -32,7 +32,7 @@ exports.validateUpdateUser = async function(req, _, next) {
   next();
 }
 
-exports.validateUpdateUrl = async function(req, _, next) {
+exports.validateUpdateLink = async function(req, _, next) {
   let validation = 
     body('urlId')
       .exists({ checkFalsy: true })
@@ -42,7 +42,7 @@ exports.validateUpdateUrl = async function(req, _, next) {
   next();
 }
 
-exports.validateNewUrl = async function(req, _, next) {
+exports.validateNewLink = async function(req, _, next) {
   let validations = [
     body('url')
       .exists({ checkFalsy: true })

@@ -22,7 +22,7 @@ window.addEventListener('load', async () => {
 })
 
 async function fetchUserLinks() {  
-  let response = await fetch('/api/urls');
+  let response = await fetch('/api/links');
   // errors will be handled inside load event handler of this page.
   if(!response.ok) {
     if(response.status === 500) {

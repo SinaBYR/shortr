@@ -62,7 +62,7 @@ exports.updateLink = async function(req, res) {
   }
 }
 
-exports.getUrl = async function(req, res) {
+exports.getLink = async function(req, res) {
   if(!req.session.user) {
     return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
   }
@@ -90,7 +90,7 @@ exports.getUrl = async function(req, res) {
   }
 }
 
-exports.deleteShortLink = async function(req, res) {
+exports.deleteLink = async function(req, res) {
   if(!req.session.user) {
     return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
   }
@@ -116,7 +116,7 @@ exports.deleteShortLink = async function(req, res) {
   }
 }
 
-exports.getAllUrls = async function(req, res) {
+exports.getAllLinks = async function(req, res) {
   if(!req.session.user) {
     return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
   }
@@ -136,7 +136,7 @@ exports.getAllUrls = async function(req, res) {
   }
 }
 
-exports.createNewShortUrl = async function(req, res) {
+exports.createNewLink = async function(req, res) {
   if(!req.session.user) {
     return res.status(401).json({ message: 'لطفا وارد حساب کاربری خود شوید' });
   }
@@ -174,7 +174,7 @@ exports.createNewShortUrl = async function(req, res) {
   }
 }
 
-exports.redirectShortUrl = async function(req, res) {
+exports.redirectLink = async function(req, res) {
   const { urlId } = req.params;
 
   try {

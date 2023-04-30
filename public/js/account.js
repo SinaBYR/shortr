@@ -14,7 +14,7 @@ async function changePassword(e) {
   let headers = new Headers();
   headers.append('Content-Type', 'application/json');
 
-  let response = await fetch('/api/me/changePassword', {
+  let response = await fetch('/auth/me/changePassword', {
     method: 'POST',
     headers,
     body: JSON.stringify({
@@ -76,7 +76,7 @@ async function updateUser(e) {
   let headers = new Headers();
   headers.append('Content-Type', 'application/json');
 
-  let response = await fetch('/api/me', {
+  let response = await fetch('/auth/me', {
     method: 'PUT',
     headers,
     body: JSON.stringify({
