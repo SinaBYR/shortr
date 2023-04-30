@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const apiRoutes = require('./routes/api.route');
-const redirectRoutes = require('./routes/redirect.route');
-const pageRoutes = require('./routes/pages.route');
-const authRoutes = require('./routes/auth.route');
+const LinkRoutes = require('./routes/link.route');
+const RedirectRoutes = require('./routes/redirect.route');
+const PageRoutes = require('./routes/pages.route');
+const AuthRoutes = require('./routes/auth.route');
 const { render404Page } = require('./controllers/pages.controller');
 
 app.use(express.static(path.join(__dirname, '../public')));
@@ -12,10 +12,10 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use('/auth', authRoutes);
-app.use('/api', apiRoutes);
-app.use('/', pageRoutes);
-app.use('/', redirectRoutes);
+app.use('/auth', AuthRoutes);
+app.use('/api', LinkRoutes);
+app.use('/', PageRoutes);
+app.use('/', RedirectRoutes);
 app.get('*', render404Page);
 
 module.exports = app;

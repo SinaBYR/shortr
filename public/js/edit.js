@@ -24,7 +24,7 @@ async function updateLink(e) {
       method: 'PATCH',
       headers,
       body: JSON.stringify({
-        urlId: form.urlId.value
+        linkId: form.linkId.value
       })
     });
   
@@ -149,11 +149,11 @@ function createElements(data) {
   let inputWrapper = document.createElement('div');
   let label = document.createElement('label');
   let input = document.createElement('input');
-  label.htmlFor = 'urlId';
+  label.htmlFor = 'linkId';
   label.textContent = 'مشخصه لینک';
   input.type = 'text';
-  input.name = 'urlId';
-  input.id = 'urlId';
+  input.name = 'linkId';
+  input.id = 'linkId';
   input.value = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
   let span3 = document.createElement('span');
   span3.innerHTML = '/ shortr.ir';

@@ -8,13 +8,13 @@ exports.switchActivationState = async function(req, res) {
   }
 
   try {
-    let urlId = req.params.urlId;
+    let linkId = req.params.linkId;
 
     await pool.query(`
       UPDATE url
       SET is_active = NOT is_active
       WHERE user_id = $1 AND url_id = $2;
-    `, [req.session.user.id, urlId]);
+    `, [req.session.user.id, linkId]);
 
     res.status(204).end();
   } catch(err) {
@@ -36,8 +36,8 @@ exports.updateLink = async function(req, res) {
   }
 
   try {
-    let urlId = req.params.urlId;
-    let newUrlId = req.body.urlId;
+    let linkId = req.params.linkId;
+    let newLinkId = req.body.linkId;
 
     let result = await pool.query(`
       UPDATE url
@@ -45,7 +45,7 @@ exports.updateLink = async function(req, res) {
       WHERE user_id = $2 AND url_id = $3 AND NOT EXISTS (
         SELECT 1 FROM url WHERE url_id = $1
       ) RETURNING url_id
-    `, [newUrlId, req.session.user.id, urlId]);
+    `, [newLinkId, req.session.user.id, linkId]);
 
     if(!result.rowCount) {
       // 1. undefined url_id is unhandled (Resource not found)
@@ -68,13 +68,13 @@ exports.getLink = async function(req, res) {
   }
   
   try {
-    let urlId = req.params.urlId;
+    let linkId = req.params.linkId;
 
     let result = await pool.query(`
       SELECT original_url, protocol, click_count, is_active, created_at
       FROM url
       WHERE user_id = $1 AND url_id = $2
-    `, [req.session.user.id, urlId]);
+    `, [req.session.user.id, linkId]);
 
     if(!result.rowCount) {
       return res.status(404).json({
@@ -96,11 +96,11 @@ exports.deleteLink = async function(req, res) {
   }
 
   try {
-    let urlId = req.params.urlId;
+    let linkId = req.params.linkId;
     let result = await pool.query(`
       DELETE FROM url
       WHERE user_id = $1 AND url_id = $2
-    `, [req.session.user.id, urlId]);
+    `, [req.session.user.id, linkId]);
 
     if(!result.rowCount) {
       return res.status(404).json({
@@ -159,11 +159,11 @@ exports.createNewLink = async function(req, res) {
     // }
 
     let { url : originalUrl, protocol } = req.body;
-    let urlId = uniqId();
+    let linkId = uniqId();
 
     let result = await pool.query(
       'INSERT INTO url (original_url, url_id, protocol, user_id) VALUES ($1, $2, $3, $4) RETURNING url_id',
-      [originalUrl, urlId, protocol, req.session.user.id]
+      [originalUrl, linkId, protocol, req.session.user.id]
     );
 
     res.status(201).json(result.rows[0]);
@@ -175,12 +175,12 @@ exports.createNewLink = async function(req, res) {
 }
 
 exports.redirectLink = async function(req, res) {
-  const { urlId } = req.params;
+  const { linkId } = req.params;
 
   try {
     let result = await pool.query(
       'SELECT original_url, protocol, is_active FROM url WHERE url_id = $1',
-      [urlId]
+      [linkId]
     );
 
     if(!result.rowCount || !result.rows[0].is_active) {
@@ -195,7 +195,7 @@ exports.redirectLink = async function(req, res) {
 
     await pool.query(
       'UPDATE url SET click_count = click_count + 1 WHERE url_id = $1',
-      [urlId]
+      [linkId]
     );
 
     let completeUrl = result.rows[0].protocol + '://' + result.rows[0].original_url;

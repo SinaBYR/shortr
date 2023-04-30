@@ -34,7 +34,7 @@ exports.validateUpdateUser = async function(req, _, next) {
 
 exports.validateUpdateLink = async function(req, _, next) {
   let validation = 
-    body('urlId')
+    body('linkId')
       .exists({ checkFalsy: true })
       .withMessage('لینک مورد نظر باید دارای آی دی باشد');
 
