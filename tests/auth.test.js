@@ -19,11 +19,11 @@ describe('POST /auth/login', () => {
   })
 })
 
-describe('POST /auth/new', () => {
+describe('POST /auth/register', () => {
   it('should create a new user', async () => {
-    const res = await request(app).post('/auth/new').send({
+    const res = await request(app).post('/auth/register').send({
       fullName: 'سینا بیرق دار',
-      email: 'test1@test.com',
+      email: 'test3@test.com',
       password: 'testtest',
       repeatPassword: 'testtest'
     });
@@ -53,5 +53,37 @@ describe('GET /auth/logout', () => {
     const logoutRes = await requestAgent.get('/auth/logout');
     expect(logoutRes.statusCode).toBe(302);
     expect(logoutRes.headers.location).toBe('/login');
+  })
+})
+
+describe('PUT /auth/me', () => {
+  it('should update user info', async () => {
+    let req = request.agent(app);
+    await req.post('/auth/login').send({
+      email: 'test@test.com',
+      password: 'testtest'
+    });
+    let res = await req.put('/auth/me').send({
+      email: 'test@test.com',
+      fullName: 'سینا بیرق دار'
+    });
+    expect(res.statusCode).toBe(200);
+    expect(res.body.fullname).toBeDefined();
+    expect(res.body.email).toBeDefined();
+  })
+})
+
+describe('POST /auth/me/changePassword', () => {
+  it('should update user password', async () => {
+    let req = request.agent(app);
+    await req.post('/auth/login').send({
+      email: 'test@test.com',
+      password: 'testtest'
+    });
+    let res = await req.post('/auth/me/changePassword').send({
+      currentPassword: 'testtest',
+      newPassword: 'testtest1'
+    });
+    expect(res.statusCode).toBe(200);
   })
 })
